@@ -34,12 +34,12 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gold-radial opacity-30" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center">
+      <div className="relative z-10 container mx-auto px-6 text-center py-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-6"
+          className="mb-6 mt-16"
         >
           <span className="inline-block px-4 py-2 border border-primary/40 rounded-full text-primary text-xs uppercase tracking-[0.3em] font-medium">
             Premium Grooming Experience
@@ -47,15 +47,18 @@ const Hero = () => {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-4 sm:mb-6 leading-tight"
-        >
-          Elevate Your
-          <br />
-          <span className="gold-text-shimmer">Style</span>
-        </motion.h1>
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.5 }}
+  className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-4 sm:mb-6 leading-tight"
+>
+  You ask.
+  <br />
+  <span className="gold-text-shimmer">We cut.</span>
+  <br />
+  <span className="text-primary/90">You glow.</span>
+</motion.h1>
+
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -63,8 +66,8 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.7 }}
           className="text-muted-foreground text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 px-4 font-light leading-relaxed"
         >
-          Where precision meets artistry. Experience luxury grooming at Cape Town's 
-          most exclusive salon, where every cut tells a story.
+          Elevate your style with us where precision meets artistry. Experience luxury grooming at Cape Town's 
+          most exclusive salon, where every cut and hair styling tells a story.
         </motion.p>
 
         <motion.div
