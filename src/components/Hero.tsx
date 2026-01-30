@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import salonInterior from '@/assets/vid-bg.mp4';
+import salonInterior from '@/assets/vid-bg-ios.mp4';
 import { useEffect, useRef } from "react";
 
 const Hero = () => {
