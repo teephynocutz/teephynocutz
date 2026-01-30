@@ -42,8 +42,10 @@ const Hero = () => {
         disablePictureInPicture
         controls={false}
         className="w-full h-full object-cover object-center"
-        src={salonInterior}
-      />
+
+      >
+        <source src={salonInterior} type="video/mp4"></source>
+      </video>
 
 
         {/* Fallback image for browsers that don't support video */}
