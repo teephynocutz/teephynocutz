@@ -2,72 +2,81 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, MapPin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo-banner.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
+  // ✅ Scroll handling (iOS-safe)
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 40);
+      });
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // ✅ Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // ✅ Lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
-    { name: 'Home', href: '/', isRoute: true },
-    { name: 'Services', href: '/services', isRoute: true },
-    { name: 'Shop', href: '/shop', isRoute: true },
-    { name: 'Gallery', href: '/gallery', isRoute: true },
-    { name: 'Contact', href: '/contact', isRoute: true },
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Shop', href: '/shop' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Contact', href: '/contact' },
   ];
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-background/95 backdrop-blur-lg border-b border-border/50 py-3'
+            ? 'bg-background/90 backdrop-blur-lg border-b border-border/40 py-3'
             : 'bg-transparent py-6'
         }`}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Teephyno Cutz" className="h-12 md:h-16 w-auto" />
+            <img src={logo} alt="Teephyno Cutz" className="h-16 md:h-120 w-auto" />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-10">
-            {navLinks.map((link) =>
-              link.isRoute ? (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="nav-link"
-                >
-                  {link.name}
-                </Link>
-              ) : (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="nav-link"
-                >
-                  {link.name}
-                </a>
-              )
-            )}
+            {navLinks.map(link => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className={`relative nav-link ${
+                  isActive(link.href)
+                    ? 'text-primary after:absolute after:-bottom-1 after:left-0 after:w-full after:h-px after:bg-primary'
+                    : ''
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
-          {/* CTA & Contact */}
+          {/* CTA */}
           <div className="hidden lg:flex items-center gap-6">
             <a href="tel:+27123456789" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
               <Phone size={16} />
@@ -78,10 +87,10 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Toggle */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-foreground p-2"
+            onClick={() => setIsMobileMenuOpen(v => !v)}
+            className="lg:hidden p-2"
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -95,70 +104,38 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-background/98 backdrop-blur-xl lg:hidden pt-24"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl lg:hidden pt-24"
           >
             <div className="container mx-auto px-6 py-8 flex flex-col items-center gap-8">
-              {navLinks.map((link, index) =>
-                link.isRoute ? (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Link
-                      to={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-2xl font-serif text-foreground hover:text-primary transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                ) : (
-                  <motion.a
-                    key={link.name}
-                    href={link.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-2xl font-serif text-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </motion.a>
-                )
-              )}
-              
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-8 flex flex-col items-center gap-4"
-              >
-                <a href="tel:+27123456789" className="flex items-center gap-3 text-muted-foreground">
+              {navLinks.map(link => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={`text-2xl font-serif transition-colors ${
+                    isActive(link.href)
+                      ? 'text-primary'
+                      : 'text-foreground hover:text-primary'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+
+              <div className="mt-8 flex flex-col items-center gap-4 text-muted-foreground">
+                <a href="tel:+27123456789" className="flex items-center gap-3">
                   <Phone size={18} />
                   <span>+27 12 345 6789</span>
                 </a>
-                <a href="#" className="flex items-center gap-3 text-muted-foreground">
+                <div className="flex items-center gap-3">
                   <MapPin size={18} />
                   <span>Long Street, Cape Town</span>
-                </a>
-              </motion.div>
+                </div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <Link
-                  to="/#booking"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="btn-gold mt-4 inline-block"
-                >
-                  Book Appointment
-                </Link>
-              </motion.div>
+              <Link to="/#booking" className="btn-gold mt-4">
+                Book Appointment
+              </Link>
             </div>
           </motion.div>
         )}
