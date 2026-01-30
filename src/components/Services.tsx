@@ -4,9 +4,10 @@ import { useRef } from 'react';
 import { Scissors, Sparkles, Wind, Crown, Home, Clock } from 'lucide-react';
 
 import serviceHaircut from '@/assets/beard-oil-2.jpg';
-import serviceManicure from '@/assets/service-manicure.jpg';
+import serviceManicure from '@/assets/nail-artist-2.jpg';
 import serviceBraids from '@/assets/service-braids.jpg';
 import serviceShaving from '@/assets/service-shaving.jpg';
+import haircut from '@/assets/haircut.jpeg';
 
 const services = [
   {
@@ -15,12 +16,12 @@ const services = [
     price: 'From R200',
     duration: '45 min',
     image: serviceHaircut,
-    icon: Scissors,
+    icon: Sparkles,
   },
   {
     title: 'Luxury Manicure',
     description: 'Pamper your hands with our premium nail care treatments using top-tier products.',
-    price: 'From R200',
+    price: 'From R250',
     duration: '60 min',
     image: serviceManicure,
     icon: Sparkles,
@@ -31,6 +32,14 @@ const services = [
     price: 'From R300',
     duration: '2-4 hrs',
     image: serviceBraids,
+    icon: Crown,
+  },
+    {
+    title: 'Hair Cut',
+    description: 'Master braiders creating intricate styles from box braids to locs maintenance.',
+    price: 'From R300',
+    duration: '2-4 hrs',
+    image: haircut,
     icon: Crown,
   },
   {
@@ -84,10 +93,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
 
       {/* Content */}
       <div className="p-6">
-        <div className="flex items-center gap-2 text-muted-foreground text-xs mb-3">
-          <Clock size={14} />
-          <span>{service.duration}</span>
-        </div>
+        
         <h3 className="font-serif text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
           {service.title}
         </h3>
