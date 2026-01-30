@@ -7,20 +7,21 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-  const video = videoRef.current;
-  if (!video) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-  const delayedPlay = () => {
-    video.play().catch(err => {
-      console.log("iOS blocked play:", err);
-    });
-  };
+    const attemptPlay = () => {
+      video.play().catch(() => {});
+    };
+    attemptPlay();
 
-  const timer = setTimeout(delayedPlay, 3000);
+    // iOS fallback: play after first user interaction
+    document.addEventListener("touchstart", attemptPlay, { once: true });
 
-  return () => clearTimeout(timer);
-}, []);
-
+    return () => {
+      document.removeEventListener("touchstart", attemptPlay);
+    };
+  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
