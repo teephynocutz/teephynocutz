@@ -17,12 +17,13 @@ const Hero = () => {
           muted
           loop
           playsInline
-          src={salonInterior}
+          preload="auto"
+          disablePictureInPicture
+          controls={false}
           className="w-full h-full object-cover object-center"
-        >
-          {/* Add your video source here when available */}
-          {/* <source src={heroVideo} type="video/mp4" /> */}
-        </video>
+          src={salonInterior}
+        />
+
         {/* Fallback image for browsers that don't support video */}
         
       </motion.div>
@@ -67,7 +68,7 @@ const Hero = () => {
           className="text-muted-foreground text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 px-4 font-light leading-relaxed"
         >
           Elevate your style with us where precision meets artistry. Experience luxury grooming at Cape Town's 
-          most exclusive salon, where every cut and hair styling tells a story.
+          most exclusive unisex salon, where every cut and hair styling tells a story.
         </motion.p>
 
         <motion.div
