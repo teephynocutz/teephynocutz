@@ -78,11 +78,11 @@ const Navbar = () => {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-6">
-            <a href="tel:+27123456789" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+            <a href="tel:+27698490110" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
               <Phone size={16} />
-              <span className="text-sm">+27 12 345 6789</span>
+              <span className="text-sm">+276 9849 0110</span>
             </a>
-            <Link to="/#booking" className="btn-gold text-xs px-6 py-3">
+            <Link to="/booking" className="btn-gold text-xs px-6 py-3">
               Book Now
             </Link>
           </div>
@@ -123,9 +123,9 @@ const Navbar = () => {
               ))}
 
               <div className="mt-8 flex flex-col items-center gap-4 text-muted-foreground">
-                <a href="tel:+27123456789" className="flex items-center gap-3">
+                <a href="tel:+27698490110" className="flex items-center gap-3">
                   <Phone size={18} />
-                  <span>+27 12 345 6789</span>
+                  <span>+27 698 490 110</span>
                 </a>
                 <div className="flex items-center gap-3">
                   <MapPin size={18} />
