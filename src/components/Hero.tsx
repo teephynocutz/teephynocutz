@@ -27,16 +27,18 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
       <video
-        ref={videoRef}
-        muted
+          controls
+  autoplay
+  playsinline
+  muted
+        
         loop
-        playsInline
+      
         preload="auto"
         autoPlay
         disablePictureInPicture
-        controls={false}
         className=" w-full h-full object-cover object-center"
-
+       
       >
         <source src="https://videos.pexels.com/video-files/35860953/15207870_2560_1440_24fps.mp4" type="video/mp4"></source>
       </video>
