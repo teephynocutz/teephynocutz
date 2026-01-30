@@ -1,8 +1,28 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import salonInterior from '@/assets/vid-bg.mp4';
+import { useEffect, useRef } from "react";
 
 const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const attemptPlay = () => {
+      video.play().catch(() => {});
+    };
+    attemptPlay();
+
+    // iOS fallback: play after first user interaction
+    document.addEventListener("touchstart", attemptPlay, { once: true });
+
+    return () => {
+      document.removeEventListener("touchstart", attemptPlay);
+    };
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
@@ -12,17 +32,19 @@ const Hero = () => {
         transition={{ duration: 1.5, ease: 'easeOut' }}
         className="absolute inset-0"
       >
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          disablePictureInPicture
-          controls={false}
-          className="w-full h-full object-cover object-center"
-          src={salonInterior}
-        />
+       <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        autoPlay
+        disablePictureInPicture
+        controls={false}
+        className="w-full h-full object-cover object-center"
+        src={salonInterior}
+      />
+
 
         {/* Fallback image for browsers that don't support video */}
         
