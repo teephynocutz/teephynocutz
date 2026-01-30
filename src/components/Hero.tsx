@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import salonInterior from '@/assets/vid-bg-ios.mp4';
 import { useEffect, useRef } from "react";
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -101,13 +102,13 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.9 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
-          <a href="/booking" className="btn-gold">
+          <Link to="/booking" className="btn-gold">
             Book Appointment
-          </a>
-          
-          <a href="/services" className="btn-ghost">
+          </Link>
+
+          <Link to="/services" className="btn-ghost">
             View Services
-          </a>
+          </Link>
         </motion.div>
 
         {/* Stats */}
