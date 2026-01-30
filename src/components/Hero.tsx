@@ -26,29 +26,37 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
-      <video
-          controls
-  autoplay
-  playsinline
-  muted
-        
+      <motion.div
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: 'easeOut' }}
+        className="absolute inset-0"
+      >
+       <video
+        ref={videoRef}
+        muted
         loop
-      
+        playsInline
         preload="auto"
         autoPlay
         disablePictureInPicture
-        className=" w-full h-full object-cover object-center"
-       
+        controls={false}
+        className="w-full h-full object-cover object-center"
+
       >
-        <source src="https://videos.pexels.com/video-files/35860953/15207870_2560_1440_24fps.mp4" type="video/mp4"></source>
+        <source src={salonInterior} ></source>
       </video>
-  
+
+
+        {/* Fallback image for browsers that don't support video */}
+        
+      </motion.div>
 
       {/* Overlay */}
-      {/* <div className="hero-overlay absolute inset-0" /> */}
+      <div className="hero-overlay absolute inset-0" />
 
       {/* Gold Radial Glow */}
-      {/* <div className="absolute inset-0 bg-gold-radial opacity-30" /> */}
+      <div className="absolute inset-0 bg-gold-radial opacity-30" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center py-4">
