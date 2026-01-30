@@ -35,7 +35,7 @@ const Hero = () => {
         autoPlay
         disablePictureInPicture
         controls={false}
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className=" w-full h-full object-cover object-center"
 
       >
         <source src="https://videos.pexels.com/video-files/35860953/15207870_2560_1440_24fps.mp4" type="video/mp4"></source>
