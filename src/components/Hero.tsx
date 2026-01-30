@@ -101,10 +101,10 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.9 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
-          <a href="#booking" className="btn-gold">
+          <a href="/booking" className="btn-gold">
             Book Appointment
           </a>
-          <a href="#services" className="btn-ghost">
+          <a href="/services" className="btn-ghost">
             View Services
           </a>
         </motion.div>

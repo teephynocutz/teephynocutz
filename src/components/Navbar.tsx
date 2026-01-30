@@ -133,7 +133,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <Link to="/#booking" className="btn-gold mt-4">
+              <Link to="/booking" className="btn-gold mt-4">
                 Book Appointment
               </Link>
             </div>
