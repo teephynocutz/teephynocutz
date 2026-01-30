@@ -104,6 +104,7 @@ const Hero = () => {
           <a href="/booking" className="btn-gold">
             Book Appointment
           </a>
+          
           <a href="/services" className="btn-ghost">
             View Services
           </a>
