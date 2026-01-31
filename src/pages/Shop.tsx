@@ -12,7 +12,11 @@ const shopCategories = [
     icon: Sparkles,
     description: 'Premium quality wigs for every style and occasion',
     items: [
-      { name: 'Brazilian Body Wave Wig', price: 'R2,500', image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400' },
+      { 
+        name: 'Bone Straight 5 by 5 wig', 
+        price: 'R5,000', 
+        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400' 
+      },
       { name: 'Lace Front Straight Wig', price: 'R3,200', image: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=400' },
       { name: 'Curly Bob Wig', price: 'R1,800', image: 'https://images.unsplash.com/photo-1605980625600-88d6a5894a49?w=400' },
       { name: 'Deep Wave HD Lace Wig', price: 'R4,500', image: 'https://images.unsplash.com/photo-1560869713-bf6f1ce88db3?w=400' },

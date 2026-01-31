@@ -50,6 +50,192 @@ const mainServices = [
   },
 ];
 
+const price_lists = [
+  { 
+    category: 'Wigs',
+    products: [
+      {
+        productId: '383435ffwr434433433',
+        name: 'Bone Straight 5 by 5 wig',
+        price: '5000.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['14 Inches'],
+        colors: ['Grey']
+      },
+      {
+        productId: '3834 cvfvfv3333',
+        name: 'Bone Straight  frontal orange',
+        price: '4500.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['12 Inches'],
+        colors: ['Orange/Black']
+      },
+      {
+        productId: '383433233',
+        name: 'Bone Straight 5 by 5 wig',
+        price: '4000.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['12 Inches'],
+        colors: ['black']
+      },
+      {
+        productId: '383433233',
+        name: 'Bone Straight 5 by 5 wig',
+        price: '4500.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['14 Inches'],
+        colors: ['black']
+      },
+      {
+        productId: '383433233',
+        name: 'Bone Straight 5 by 5 14 wig',
+        price: '5000.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['14 Inches'],
+        colors: ['brown']
+      },
+      {
+        productId: '383fkdnkfndkdn43323sdff3',
+        name: 'Bone Straight 5 by 5',
+        price: '11000.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['28 Inches'],
+        colours: ['black']
+      },
+      {
+        productId: '38343322323233232333',
+        name: 'Bone Straight Frontal Blonde',
+        price: '13500.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['28 Inches'],
+        colors: ['black and blonde']
+      },
+      {
+        productId: '3834dsffddderwef33233',
+        name: 'Bone Straight frontal wig',
+        price: '10000.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['22 Inches'],
+        colors: ['black']
+      },
+         {
+        productId: '383svjdkvvn433233',
+        name: 'Bone Straight  frontal wig',
+        price: '10000.00',
+        image: 'bone-Straight-12-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['22 Inches'],
+        colors: ['black']
+      },
+      {
+        productId: '3sdfsfkffsff8343uugv3233',
+        name: 'Bone Straight  2 by 6 burgundy wig',
+        price: '7000.00',
+        image: 'bone-Straight-1-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['20 inches'],
+        colors: ['burgundy']
+      },
+       {
+        productId: 'fdree3834dsdsd33233',
+        name: 'Single Donor 6 by 6 wig',
+        price: '15000.00',
+        image: 'bone-Straight-1-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['30 inches'],
+        colors: ['grey', 'blond',]
+      },
+       {
+        productId: '3ad834dvbs89dsd33233',
+        name: 'Single Donor 5 by 5 wig',
+        price: '10000.00',
+        image: 'bone-Straight-1-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['26 inches'],
+        colors: ['brown and gold']
+      },
+       {
+        productId: '3834dsdf90dsd33233',
+        name: 'Single Donor frontal wig',
+        price: '13500.00',
+        image: 'bone-Straight-1-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['28 inches'],
+        colors: ['black']
+      },
+       {
+        productId: '3834ds90fdddsd33233',
+        name: 'Single Donor 6 by 6 wig',
+        price: '15000.00',
+        image: 'bone-Straight-1-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['30 inches'],
+        colors: ['grey']
+      },
+       {
+        productId: '3834ds90vvdsd33233',
+        name: 'Bone Straight frontal wig',
+        price: '13000.00',
+        image: 'bone-Straight-1-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['28 inches'],
+        colors: ['black']
+      },
+       {
+        productId: '3834dsds90dsd33233',
+        name: 'Bone Straight frontal wig',
+        price: '15000.00',
+        image: 'bone-Straight-1-inch-frontal-orange-b-jpg',
+        images: ['bone-straight-12-inch-frontal-orange-b.jpg'],
+        video: 'bone-straight-12-inch-frontal-orange-b',
+        description: '',
+        inches: ['28 inches'],
+        colors: ['brown']
+      },
+    ]
+    
+  },
+  
+]
+
 const additionalServices = [
   { name: 'Premium Pedicure', price: 'From R220', description: 'Complete foot care with exfoliation' },
   { name: 'Wig Installation', price: 'From R500', description: 'Professional fitting and styling' },
