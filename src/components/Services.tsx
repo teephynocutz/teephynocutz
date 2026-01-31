@@ -42,14 +42,7 @@ const services = [
     image: haircut,
     icon: Crown,
   },
-  {
-    title: 'Hot Towel Shave',
-    description: 'Traditional straight razor shave with hot towels and premium grooming products.',
-    price: 'From R180',
-    duration: '30 min',
-    image: serviceShaving,
-    icon: Wind,
-  },
+
 ];
 
 const additionalServices = [
