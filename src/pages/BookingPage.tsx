@@ -8,6 +8,9 @@ import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover
 import { bookingSchema } from "@/validation/bookingSchema"
 import Navbar from "@/components/Navbar"
 import { api } from "@/lib/api"
+import { useNavigate } from "react-router-dom"
+
+
 
 
 type BookingType = "normal" | "vip" | "home"
@@ -82,10 +85,13 @@ export default function BookingPage() {
   const [step, setStep] = useState<1 | 2>(1)
   const [openCategory, setOpenCategory] = useState<string | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const navigate = useNavigate()
 
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [apiError, setApiError] = useState("")
+  const [showErrorDialog, setShowErrorDialog] = useState(false)
+
 
 
   const [form, setForm] = useState({
@@ -140,14 +146,13 @@ export default function BookingPage() {
     const res = await api.post("/bookings", payload)
 
     console.log("BOOKING SUCCESS →", res.data)
-
     setSuccess(true)
+
+    navigate("/booking-success")
+
   } catch (err) {
-    console.error(err)
-    setApiError(
-      err?.response?.data?.error ??
-        "Something went wrong. Please try again."
-    )
+    console.error("BOOKING API ERROR →", err)
+    setShowErrorDialog(true)
   } finally {
     setSubmitting(false)
   }
@@ -412,6 +417,55 @@ export default function BookingPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+      {showErrorDialog && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+        >
+          <motion.div
+            initial={{ scale: 0.9, y: 40 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.9, y: 40 }}
+            className="w-full max-w-sm rounded-3xl bg-background p-6 text-center shadow-2xl"
+          >
+            <h3 className="text-xl font-bold mb-2">
+              Oops 😔
+            </h3>
+
+            <p className="text-sm text-muted-foreground mb-6">
+              We’re currently experiencing a temporary issue while processing
+              bookings.
+              <br />
+              <br />
+              Don’t worry — our team is ready to help you immediately.
+            </p>
+
+            {/* WhatsApp Button */}
+            <a
+              href="https://wa.me/+27698490110"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-flex items-center justify-center w-full py-4 rounded-2xl bg-green-500 text-white font-semibold overflow-hidden"
+            >
+              <span className="absolute inset-0 animate-ping bg-green-400 opacity-20 rounded-2xl" />
+              💚 Chat with us on WhatsApp
+            </a>
+
+            <button
+              onClick={() => setShowErrorDialog(false)}
+              className="mt-4 text-sm text-muted-foreground"
+            >
+              Close
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+</AnimatePresence>
+
     </div>
   )
 }
