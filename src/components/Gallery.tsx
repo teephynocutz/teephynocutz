@@ -17,8 +17,9 @@ const galleryImages = [
   { src: serviceBraids, alt: 'Expert Braiding', span: 'col-span-1 row-span-1' },
   { src: salonCouch, alt: 'Waiting Area', span: 'col-span-1 row-span-1' },
   { src: banner, alt: 'Teephyno Cutz Banner', span: 'col-span-1 row-span-1' },
+  { src: poolTable, alt: 'Pool Table', span: 'col-span-1 row-span-1' },
   { src: salonInside2, alt: 'Salon View', span: 'col-span-2 row-span-1' },
-    { src: poolTable, alt: 'Pool Table', span: 'col-span-1 row-span-1' },
+
 ];
 
 const Gallery = () => {

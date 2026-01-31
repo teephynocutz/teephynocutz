@@ -7,6 +7,7 @@ import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { bookingSchema } from "@/validation/bookingSchema"
 import Navbar from "@/components/Navbar"
+import { api } from "@/lib/api"
 
 
 type BookingType = "normal" | "vip" | "home"
@@ -82,6 +83,11 @@ export default function BookingPage() {
   const [openCategory, setOpenCategory] = useState<string | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
+  const [submitting, setSubmitting] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [apiError, setApiError] = useState("")
+
+
   const [form, setForm] = useState({
     type: "normal" as BookingType,
     services: [] as ServiceItem[],
@@ -110,6 +116,43 @@ export default function BookingPage() {
     selected.setHours(h, m)
     return !isBefore(selected, addHours(new Date(), 12))
   }
+
+
+  const submitBooking = async () => {
+  try {
+    setSubmitting(true)
+    setApiError("")
+
+    const payload = {
+      type: form.type.toUpperCase(),
+      services: form.services,
+      date: form.date?.toISOString(),
+      time: form.time,
+      totalPrice,
+
+      fullName: form.fullName,
+      email: form.email,
+      phone: form.phone,
+    }
+
+    console.log("BOOKING PAYLOAD →", payload)
+
+    const res = await api.post("/bookings", payload)
+
+    console.log("BOOKING SUCCESS →", res.data)
+
+    setSuccess(true)
+  } catch (err) {
+    console.error(err)
+    setApiError(
+      err?.response?.data?.error ??
+        "Something went wrong. Please try again."
+    )
+  } finally {
+    setSubmitting(false)
+  }
+}
+
 
   const totalPrice = form.services.reduce((sum, s) => sum + s.price, 0)
 
@@ -345,13 +388,20 @@ export default function BookingPage() {
               </div>
             )}
 
+            {success && (
+              <div className="rounded-2xl bg-green-500/10 border border-green-500 p-4 text-sm text-green-600">
+                Booking successful! We’ll contact you shortly.
+              </div>
+            )}
+
             <button
-              disabled={!canConfirm}
-              onClick={handleSubmit}
+              disabled={!canConfirm || submitting}
+              onClick={submitBooking}
               className="w-full py-4 rounded-2xl bg-gradient-to-br from-primary to-primary-deep text-primary-foreground font-semibold disabled:opacity-40"
             >
-              Confirm & Book
+              {submitting ? "Booking…" : "Confirm & Book"}
             </button>
+
 
             <button
               onClick={() => setStep(1)}
