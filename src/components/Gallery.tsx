@@ -3,12 +3,13 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { X, Instagram } from 'lucide-react';
 
-import salonInside from '@/assets/salon-inside.jpg';
-import salonInside2 from '@/assets/salon-inside-2.jpg';
+import salonInside from '@/assets/welcome-section.jpg';
+import salonInside2 from '@/assets/hairdresser.jpg';
 import salonCouch from '@/assets/salon-couch.jpg';
 import banner from '@/assets/banner.jpg';
-import serviceHaircut from '@/assets/service-haircut.jpg';
-import serviceBraids from '@/assets/service-braids.jpg';
+import serviceHaircut from '@/assets/salon-sapce-3.jpg';
+import serviceBraids from '@/assets/salon-inside.jpg';
+import poolTable from '@/assets/interior-pool-table.jpg';
 
 const galleryImages = [
   { src: salonInside, alt: 'Salon Interior', span: 'col-span-2 row-span-2' },
@@ -17,6 +18,7 @@ const galleryImages = [
   { src: salonCouch, alt: 'Waiting Area', span: 'col-span-1 row-span-1' },
   { src: banner, alt: 'Teephyno Cutz Banner', span: 'col-span-1 row-span-1' },
   { src: salonInside2, alt: 'Salon View', span: 'col-span-2 row-span-1' },
+    { src: poolTable, alt: 'Pool Table', span: 'col-span-1 row-span-1' },
 ];
 
 const Gallery = () => {
