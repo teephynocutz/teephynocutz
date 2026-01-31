@@ -5,7 +5,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { format, addHours, isBefore } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
+import { bookingSchema } from "@/validation/bookingSchema"
 import Navbar from "@/components/Navbar"
+
 
 type BookingType = "normal" | "vip" | "home"
 
@@ -44,35 +46,28 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
       ],
     },
   ],
-
   vip: [
     {
-      category: "Haircut",
+      category: "VIP Grooming",
       services: [
         { name: "VIP Haircut", price: 250 },
         { name: "VIP Beard Trim", price: 180 },
       ],
     },
     {
-      category: "Hair Styling",
+      category: "VIP Styling",
       services: [
         { name: "VIP Wash & Style", price: 300 },
         { name: "VIP Braids", price: 600 },
       ],
     },
   ],
-
   home: [
     {
-      category: "Home Haircut",
+      category: "Home Service",
       services: [
         { name: "Adult Home Haircut", price: 300 },
         { name: "Kids Home Haircut", price: 200 },
-      ],
-    },
-    {
-      category: "Home Beauty",
-      services: [
         { name: "Home Manicure", price: 300 },
         { name: "Home Pedicure", price: 350 },
       ],
@@ -85,6 +80,7 @@ export default function BookingPage() {
 
   const [step, setStep] = useState<1 | 2>(1)
   const [openCategory, setOpenCategory] = useState<string | null>(null)
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   const [form, setForm] = useState({
     type: "normal" as BookingType,
@@ -96,7 +92,8 @@ export default function BookingPage() {
     phone: "",
   })
 
-  /* helpers */
+  /* ───────── Helpers ───────── */
+
   const toggleService = (service: ServiceItem) => {
     setForm((f) => ({
       ...f,
@@ -114,39 +111,73 @@ export default function BookingPage() {
     return !isBefore(selected, addHours(new Date(), 12))
   }
 
-  const totalPrice = form.services.reduce((s, x) => s + x.price, 0)
+  const totalPrice = form.services.reduce((sum, s) => sum + s.price, 0)
+
+  const canConfirm =
+    isAuthenticated ||
+    (form.fullName.trim() &&
+      form.email.trim() &&
+      form.phone.trim())
+
+  /* ───────── Submit (Zod only added) ───────── */
+
+  const handleSubmit = () => {
+  setErrors({})
+
+  const payload = {
+    ...form,
+    totalPrice,
+  }
+
+  const result = bookingSchema.safeParse(payload)
+
+  if (!result.success) {
+    const fieldErrors: Record<string, string> = {}
+    result.error.errors.forEach((err) => {
+      const key = err.path[0]
+      if (key) fieldErrors[key as string] = err.message
+    })
+    setErrors(fieldErrors)
+    return
+  }
+
+  console.log("BOOKING PAYLOAD →", {
+    type: result.data.type,
+    services: result.data.services,
+    date: result.data.date,
+    time: result.data.time,
+    totalPrice,
+    customer: isAuthenticated
+      ? "AUTH_USER"
+      : {
+          fullName: result.data.fullName,
+          email: result.data.email,
+          phone: result.data.phone,
+        },
+  })
+}
+
+
+  /* ───────── Render ───────── */
 
   return (
-    <div className="min-h-screen max-w-md mx-auto px-4 bg-background text-foreground">
+    <div className="min-h-screen max-w-md mx-auto px-4 py-12 md:py-28 bg-background text-foreground">
       <Navbar />
-       {/* HERO */}
-       <div         className="relative h-[120px] w-full bg-cover bg-center"
-         style={{
-           backgroundImage:
-            "url('/interior-pool-table.jpg')", // replace with your image
-         }}
-       >
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
-        
-      </div>
       {/* HERO */}
-      <section className="pt-10 pb-6 text-center">
-        <h1 className="text-3xl font-serif font-bold">
+      <div className="relative pt-12 pb-8 text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent" />
+        <h1 className="relative z-10 font-serif text-3xl font-bold">
           Book <span className="gold-text-shimmer">Appointment</span>
         </h1>
-        <p className="text-xs text-muted-foreground mt-2">
-          Choose service • Date • Time
-        </p>
-      </section>
+      </div>
 
       <AnimatePresence mode="wait">
-        {/* STEP 1 */}
         {step === 1 && (
           <motion.div
             key="step1"
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
+            exit={{ opacity: 0, x: -20 }}
             className="space-y-6"
           >
             {/* TABS */}
@@ -157,14 +188,14 @@ export default function BookingPage() {
                   onClick={() =>
                     setForm({ ...form, type: t, services: [] })
                   }
-                  className={`py-3 rounded-xl text-xs font-semibold uppercase
+                  className={`py-3 rounded-xl text-xs font-semibold uppercase transition-all
                     ${
                       form.type === t
-                        ? "bg-gradient-to-br from-primary to-primary-deep text-primary-foreground shadow"
+                        ? "bg-gradient-to-br from-primary to-primary-deep text-primary-foreground shadow-lg"
                         : "bg-card border border-border"
                     }`}
                 >
-                  {t === "home" ? "Home" : t}
+                  {t === "home" ? "Home Service" : t}
                 </button>
               ))}
             </div>
@@ -174,7 +205,7 @@ export default function BookingPage() {
               {PRICING[form.type].map((cat) => (
                 <div
                   key={cat.category}
-                  className="rounded-2xl border border-border bg-card overflow-hidden"
+                  className="rounded-2xl border border-border bg-card"
                 >
                   <button
                     onClick={() =>
@@ -204,7 +235,7 @@ export default function BookingPage() {
                             <button
                               key={s.name}
                               onClick={() => toggleService(s)}
-                              className={`w-full flex justify-between items-center px-4 py-3 rounded-xl text-sm
+                              className={`w-full flex justify-between items-center px-4 py-3 rounded-xl text-sm transition-all
                                 ${
                                   selected
                                     ? "bg-primary/20 border border-primary text-primary"
@@ -227,15 +258,10 @@ export default function BookingPage() {
             <div className="grid grid-cols-2 gap-3">
               <Popover>
                 <PopoverTrigger asChild>
-                  <button className="w-full rounded-2xl border border-border bg-card px-4 py-4 text-left">
-                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
-                      Date
-                    </p>
-                    <p className="text-sm font-medium">
-                      {form.date
-                        ? format(form.date, "EEE, dd MMM")
-                        : "Select date"}
-                    </p>
+                  <button className="py-4 rounded-2xl border border-border bg-card text-left px-4">
+                    {form.date
+                      ? format(form.date, "dd MMM")
+                      : "Select date"}
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="p-0">
@@ -248,26 +274,15 @@ export default function BookingPage() {
                 </PopoverContent>
               </Popover>
 
-              <div className="rounded-2xl border border-border bg-card px-4 py-4">
-                <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
-                  Time
-                </p>
-                <input
-                  type="time"
-                  value={form.time}
-                  onChange={(e) =>
-                    setForm({ ...form, time: e.target.value })
-                  }
-                  className="w-full bg-transparent text-sm font-medium outline-none accent-primary [color-scheme:dark]"
-                />
-              </div>
+              <input
+                type="time"
+                value={form.time}
+                onChange={(e) =>
+                  setForm({ ...form, time: e.target.value })
+                }
+                className="[&::-webkit-calendar-picker-indicator]:invert py-4 px-4 rounded-2xl border border-border bg-card accent-primary cursor-pointer"
+              />
             </div>
-
-            {!validTime() && form.time && (
-              <p className="text-xs text-red-400">
-                Time must be at least 12 hours from now
-              </p>
-            )}
 
             <button
               disabled={!form.services.length || !form.date || !validTime()}
@@ -279,34 +294,62 @@ export default function BookingPage() {
           </motion.div>
         )}
 
-        {/* STEP 2 */}
+        {/* REVIEW */}
         {step === 2 && (
           <motion.div
             key="step2"
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
+            exit={{ opacity: 0, x: -20 }}
             className="space-y-6"
           >
             <div className="rounded-3xl p-6 bg-card border border-border space-y-2">
-              <p className="text-xs uppercase text-muted-foreground">
-                {form.type} booking
-              </p>
-
               {form.services.map((s) => (
                 <div key={s.name} className="flex justify-between text-sm">
                   <span>{s.name}</span>
                   <span>R{s.price}</span>
                 </div>
               ))}
-
               <div className="flex justify-between font-semibold pt-3 border-t border-border">
                 <span>Total</span>
                 <span>R{totalPrice}</span>
               </div>
             </div>
 
-            <button className="w-full py-4 rounded-2xl bg-gradient-to-br from-primary to-primary-deep text-primary-foreground font-semibold">
+            {!isAuthenticated && (
+              <div className="rounded-3xl border border-border bg-card p-5 space-y-4">
+                <input
+                  placeholder="Full name"
+                  value={form.fullName}
+                  onChange={(e) =>
+                    setForm({ ...form, fullName: e.target.value })
+                  }
+                  className="w-full py-4 px-4 rounded-2xl border border-border bg-background"
+                />
+                <input
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={(e) =>
+                    setForm({ ...form, email: e.target.value })
+                  }
+                  className="w-full py-4 px-4 rounded-2xl border border-border bg-background"
+                />
+                <input
+                  placeholder="Phone"
+                  value={form.phone}
+                  onChange={(e) =>
+                    setForm({ ...form, phone: e.target.value })
+                  }
+                  className="w-full py-4 px-4 rounded-2xl border border-border bg-background"
+                />
+              </div>
+            )}
+
+            <button
+              disabled={!canConfirm}
+              onClick={handleSubmit}
+              className="w-full py-4 rounded-2xl bg-gradient-to-br from-primary to-primary-deep text-primary-foreground font-semibold disabled:opacity-40"
+            >
               Confirm & Book
             </button>
 
@@ -322,5 +365,3 @@ export default function BookingPage() {
     </div>
   )
 }
-
-
