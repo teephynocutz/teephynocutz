@@ -95,13 +95,13 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">
-                  123 Long Street<br />Cape Town, 8001
+                  105 Long Street<br />Cape Town, 8001
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href="tel:+27123456789" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  +27 12 345 6789
+                <a href="tel:+27 698 490 110" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  +27 698 490 110
                 </a>
               </li>
               <li className="flex items-center gap-3">
