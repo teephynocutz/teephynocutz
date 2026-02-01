@@ -209,15 +209,16 @@ const wigImages = [
   wigYellow,
   wigOrange,
   wigOrange,
-  "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1780&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1888&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1596704017254-9759879c5d44?q=80&w=1935&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1771&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?q=80&w=1887&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1526510747491-27fb588c5fbb?q=80&w=1887&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1887&auto=format&fit=crop",
+  wigLongBlack,
+  wigBrownBlack,
+  wig,
+  wigYellow,
+  wigYellow,
+  wigOrange,
+  wigOrange,
+  wigOrange,
+  wigOrange,
+ 
 ];
 
 const ProductContent = ({ product }: { product: WigProduct }) => {
