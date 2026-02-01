@@ -1,10 +1,13 @@
 import { Crown, Sparkles } from "lucide-react";
 
 import haircut from "@/assets/haircut.jpeg";
-import serviceHaircut from "@/assets/beard-oil-2.jpg";
+import serviceHome from "@/assets/services/home-service.jpg";
 import serviceManicure from "@/assets/nail-artist-2.jpg";
 import serviceBraids from "@/assets/service-braids.jpg";
-
+import  servicePedicure from "@/assets/services/pedicure.jpg"
+import  serviceDreadlocks from "@/assets/services/dreadlocks.jpg"
+import serviceHairStyling from "@/assets/services/hair-styling.jpg"
+import serviceShaving from "@/assets/services/shaving.jpg"
 export type Service = {
   title: string;
   slug: string;
@@ -41,7 +44,7 @@ export const services: Service[] = [
       "A relaxing pedicure that cleans, shapes, and beautifies your feet—leaving your nails polished and your skin soft, smooth, and refreshed.",
     price: "From R250",
     duration: "60 min",
-    image: serviceManicure,
+    image: servicePedicure,
     icon: Sparkles,
   },
   {
@@ -51,7 +54,7 @@ export const services: Service[] = [
       "Neat, stylish braids customized to your look—designed to protect your hair while keeping it flawless, comfortable, and long-lasting.",
     price: "From R250",
     duration: "60 min",
-    image: serviceManicure,
+    image: serviceBraids,
     icon: Sparkles,
   },
   {
@@ -61,7 +64,7 @@ export const services: Service[] = [
       "Professional dreadlock styling and maintenance that keeps your locs clean, well-shaped, and healthy—crafted for a natural, confident look.",
     price: "From R300",
     duration: "2-4 hrs",
-    image: serviceBraids,
+    image: serviceDreadlocks,
     icon: Crown,
   },
   {
@@ -78,20 +81,20 @@ export const services: Service[] = [
     title: "Hair Style",
     slug: "hair-style",
     description:
-      "Professional hairstyling for all occasions.",
+      "Relaxed, high-end hair styling for a clean, modern finish that feels premium.",
     price: "From R300",
     duration: "2-4 hrs",
-    image: serviceBraids,
+    image: serviceHairStyling,
     icon: Crown,
   },
   {
     title: "Home Service",
     slug: "home-service",
     description:
-      "Professional hairstyling tailored to your look—clean, stylish, and confidence-boosting with a flawless finish.",
+      "Enjoy premium salon services in the comfort of your home—relaxed, stylish, and hassle-free.",
     price: "From R300",
     duration: "2-4 hrs",
-    image: serviceBraids,
+    image: serviceShaving,
     icon: Crown,
   },
 ];

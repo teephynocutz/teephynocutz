@@ -16,7 +16,7 @@ const Index = () => {
       <Services />
       <WigCarousel />
       <Gallery />
-      <Booking />
+      {/* <Booking /> */}
       <About />
       <Contact />
       <Footer />
