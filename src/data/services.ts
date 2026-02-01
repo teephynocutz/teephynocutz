@@ -62,7 +62,7 @@ export const services: Service[] = [
     slug: "dreadlocks",
     description:
       "Professional dreadlock styling and maintenance that keeps your locs clean, well-shaped, and healthy—crafted for a natural, confident look.",
-    price: "From R300",
+    price: "From R800",
     duration: "2-4 hrs",
     image: serviceDreadlocks,
     icon: Crown,
@@ -92,7 +92,7 @@ export const services: Service[] = [
     slug: "home-service",
     description:
       "Enjoy premium salon services in the comfort of your home—relaxed, stylish, and hassle-free.",
-    price: "From R300",
+    price: "From R1000",
     duration: "2-4 hrs",
     image: serviceShaving,
     icon: Crown,
