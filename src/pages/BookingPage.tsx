@@ -30,23 +30,36 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
     {
       category: "Haircut",
       services: [
-        { name: "Adult Haircut", price: 120 },
-        { name: "Kids Haircut", price: 80 },
+        { name: "Barbing", price: 300 },
+        { name: "Trimming", price: 150 },
+        { name: "Beard Trimming", price: 150 },
+        { name: "Full Dye", price: 200 },
+        { name: "Trimming Dye", price: 100 },
       ],
     },
     {
-      category: "Hair Styling",
+      category: "TINT",
       services: [
-        { name: "Wash & Style", price: 150 },
-        { name: "Braids", price: 300 },
-        { name: "Dreadlocks", price: 500 },
+        { name: "Bleach", price: 400 },
+        { name: "Color", price: 800 },
+      ],
+    },
+    
+    {
+      category: "Dreads",
+      services: [
+        { name: "Afro Palm Rolling", price: 800.00 },
+        { name: "Full Palm Rolling", price: 1000.00 },
+        { name: "Afro Crochet", price: 1000.00 },
+        { name: "Spot Waving", price: 500.00 },
+        { name: "Waxing (Beard)", price: 300.00 },
       ],
     },
     {
-      category: "Nails",
+      category: "Washing & Relaxing",
       services: [
-        { name: "Manicure", price: 150 },
-        { name: "Pedicure", price: 200 },
+        { name: "Hair Wash", price: 100 },
+        { name: "Relaxing", price: 200 },
       ],
     },
   ],
@@ -263,7 +276,7 @@ export default function BookingPage() {
                     }
                     className="w-full px-4 py-4 flex justify-between items-center text-sm font-medium"
                   >
-                    {cat.category}
+                    {cat.category.toUpperCase()}
                     <span>{openCategory === cat.category ? "−" : "+"}</span>
                   </button>
 
