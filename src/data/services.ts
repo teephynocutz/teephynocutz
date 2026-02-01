@@ -74,7 +74,7 @@ export const services: Service[] = [
       "Gentle, precise shaving that leaves your skin smooth, clean, and refreshed with a polished, well-groomed finish.",
     price: "From R300",
     duration: "45 min",
-    image: serviceBraids,
+    image: serviceShaving,
     icon: Crown,
   },
   {
@@ -94,7 +94,7 @@ export const services: Service[] = [
       "Enjoy premium salon services in the comfort of your home—relaxed, stylish, and hassle-free.",
     price: "From R1000",
     duration: "2-4 hrs",
-    image: serviceShaving,
+    image: serviceHome,
     icon: Crown,
   },
 ];
