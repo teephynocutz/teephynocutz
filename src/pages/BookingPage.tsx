@@ -203,7 +203,7 @@ export default function BookingPage() {
   }
 
   console.log("BOOKING PAYLOAD →", {
-    type: result.data.type,
+    type: result.data.type.toLocaleLowerCase(),
     services: result.data.services,
     date: result.data.date,
     time: result.data.time,
