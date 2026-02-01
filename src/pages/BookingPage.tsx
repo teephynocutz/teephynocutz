@@ -143,7 +143,7 @@ export default function BookingPage() {
     setApiError("")
 
     const payload = {
-      type: form.type,
+      type: form.type.toUpperCase(),
       services: form.services,
       date: form.date?.toISOString(),
       time: form.time,
@@ -188,7 +188,6 @@ export default function BookingPage() {
   const payload = {
     ...form,
     totalPrice,
-    type: form.type.toUpperCase()
   }
 
   const result = bookingSchema.safeParse(payload)
