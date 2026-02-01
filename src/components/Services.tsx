@@ -8,10 +8,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import serviceHaircut from "@/assets/beard-oil-2.jpg";
-import serviceManicure from "@/assets/nail-artist-2.jpg";
-import serviceBraids from "@/assets/service-braids.jpg";
-import haircut from "@/assets/haircut.jpeg";
 import { useNavigate } from "react-router-dom";
 import { services } from "@/data/services"; 
 

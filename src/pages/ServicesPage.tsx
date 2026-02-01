@@ -257,62 +257,63 @@ const ServiceCard = ({ service, index }: { service: typeof mainServices[0]; inde
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group glass-card-hover overflow-hidden"
-    >
-      {/* Image */}
-      <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-        <img
-          src={service.image}
-          alt={service.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="service-overlay absolute inset-0" />
+    // <motion.div
+    //   ref={ref}
+    //   initial={{ opacity: 0, y: 40 }}
+    //   animate={isInView ? { opacity: 1, y: 0 } : {}}
+    //   transition={{ duration: 0.6, delay: index * 0.1 }}
+    //   className="group glass-card-hover overflow-hidden"
+    // >
+    //   {/* Image */}
+    //   <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+    //     <img
+    //       src={service.image}
+    //       alt={service.title}
+    //       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+    //     />
+    //     <div className="service-overlay absolute inset-0" />
         
-        {/* Price Badge */}
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-primary/90 text-primary-foreground px-2.5 py-1 sm:px-3 rounded-sm text-xs sm:text-sm font-semibold">
-          {service.price}
-        </div>
+    //     {/* Price Badge */}
+    //     <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-primary/90 text-primary-foreground px-2.5 py-1 sm:px-3 rounded-sm text-xs sm:text-sm font-semibold">
+    //       {service.price}
+    //     </div>
         
-        {/* Icon */}
-        <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 p-2.5 sm:p-3 bg-background/80 backdrop-blur-sm rounded-full border border-primary/30">
-          <service.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-        </div>
-      </div>
+    //     {/* Icon */}
+    //     <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 p-2.5 sm:p-3 bg-background/80 backdrop-blur-sm rounded-full border border-primary/30">
+    //       <service.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+    //     </div>
+    //   </div>
 
-      {/* Content */}
-      <div className="p-4 sm:p-5 md:p-6">
-        <div className="flex items-center gap-2 text-muted-foreground text-xs mb-2 sm:mb-3">
-          <Clock size={12} className="sm:w-3.5 sm:h-3.5" />
-          <span>{service.duration}</span>
-        </div>
-        <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-          {service.title}
-        </h3>
-        <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
-          {service.description}
-        </p>
+    //   {/* Content */}
+    //   <div className="p-4 sm:p-5 md:p-6">
+    //     <div className="flex items-center gap-2 text-muted-foreground text-xs mb-2 sm:mb-3">
+    //       <Clock size={12} className="sm:w-3.5 sm:h-3.5" />
+    //       <span>{service.duration}</span>
+    //     </div>
+    //     <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+    //       {service.title}
+    //     </h3>
+    //     <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+    //       {service.description}
+    //     </p>
         
-        {/* Features */}
-        <ul className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-5">
-          {service.features.map((feature) => (
-            <li key={feature} className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Star className="w-3 h-3 text-primary flex-shrink-0" />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
+    //     {/* Features */}
+    //     <ul className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-5">
+    //       {service.features.map((feature) => (
+    //         <li key={feature} className="flex items-center gap-2 text-xs text-muted-foreground">
+    //           <Star className="w-3 h-3 text-primary flex-shrink-0" />
+    //           <span>{feature}</span>
+    //         </li>
+    //       ))}
+    //     </ul>
         
-        <a href="/#booking" className="btn-gold w-full text-xs sm:text-sm py-2.5 sm:py-3 flex items-center justify-center gap-2">
-          Book Now
-          <ArrowRight size={14} />
-        </a>
-      </div>
-    </motion.div>
+    //     <a href="/#booking" className="btn-gold w-full text-xs sm:text-sm py-2.5 sm:py-3 flex items-center justify-center gap-2">
+    //       Book Now
+    //       <ArrowRight size={14} />
+    //     </a>
+    //   </div>
+    // </motion.div>
+    <div><h1>Coming Soon</h1></div>
   );
 };
 
