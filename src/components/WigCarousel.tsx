@@ -2,6 +2,12 @@ import React from "react";
 import { Carousel, Card, BlurImage } from "@/components/ui/apple-cards-carousel";
 import { Button } from "@/components/ui/button";
 import { IconShoppingCart, IconHeart } from "@tabler/icons-react";
+import wigLongBlack from "@/assets/wigs/long-wig.jpeg";
+import wig from "@/assets/wigs/wig.jpeg";
+import wigYellow from "@/assets/wigs/yellow.jpeg";
+import wigWhite from "@/assets/wigs/white.jpeg";
+import wigOrange from "@/assets/wigs/orange-wig.jpeg";
+import wigBrownBlack from "@/assets/wigs/brow-black.jpeg";
 
 interface WigProduct {
   productId: string;
@@ -196,13 +202,13 @@ const wigProducts: WigProduct[] = [
 
 // Beautiful wig images from Unsplash
 const wigImages = [
-  "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1769&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=1887&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=1887&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=1887&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1529068755536-a5ade0dcb4e8?q=80&w=1881&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1769&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?q=80&w=1887&auto=format&fit=crop",
+  wigLongBlack,
+  wigBrownBlack,
+  wig,
+  wigYellow,
+  wigYellow,
+  wigOrange,
+  wigOrange,
   "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1780&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1888&auto=format&fit=crop",
@@ -298,14 +304,33 @@ export default function WigCarousel() {
   ));
 
   return (
-    <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-foreground font-sans">
-        Explore Our Premium Wig Collection
-      </h2>
-      <p className="max-w-7xl pl-4 mx-auto text-muted-foreground mt-2 text-base md:text-lg">
-        Handpicked luxury wigs for the modern woman
-      </p>
+     <section
+      id="services"
+      className="py-8  md:py-12 lg:py-12 bg-background relative"
+    >
+          {/* Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-radial opacity-20 pointer-events-none" />
+      
+      <div className="container mx-auto px-4 sm:px-6 relative">
+        {/* Header */}
+        <div
+        
+          className="text-center"
+        >
+          <span className="text-primary text-xs uppercase tracking-[0.3em] font-medium block mb-4">
+            Explore
+          </span>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+             Our Premium<span className="gold-text">Wig Collections</span>
+          </h2>
+          <div className="section-divider mb-6" />
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+             Handpicked luxury wigs for the modern woman
+          </p>
+        </div>
+     </div>
+      
       <Carousel items={cards} />
-    </div>
+    </section>
   );
 }

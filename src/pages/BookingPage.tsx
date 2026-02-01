@@ -182,41 +182,6 @@ export default function BookingPage() {
 
   /* ───────── Submit (Zod only added) ───────── */
 
-  const handleSubmit = () => {
-  setErrors({})
-
-  const payload = {
-    ...form,
-    totalPrice,
-  }
-
-  const result = bookingSchema.safeParse(payload)
-
-  if (!result.success) {
-    const fieldErrors: Record<string, string> = {}
-    result.error.errors.forEach((err) => {
-      const key = err.path[0]
-      if (key) fieldErrors[key as string] = err.message
-    })
-    setErrors(fieldErrors)
-    return
-  }
-
-  console.log("BOOKING PAYLOAD →", {
-    type: result.data.type.toUpperCase(),
-    services: result.data.services,
-    date: result.data.date,
-    time: result.data.time,
-    totalPrice,
-    customer: isAuthenticated
-      ? "AUTH_USER"
-      : {
-          fullName: result.data.fullName,
-          email: result.data.email,
-          phone: result.data.phone,
-        },
-  })
-}
 
 
   /* ───────── Render ───────── */
