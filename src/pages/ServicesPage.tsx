@@ -398,7 +398,7 @@ const ServicesPage = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-            {additionalServices.map((service, index) => (
+            {/* {additionalServices.map((service, index) => (
               <motion.div
                 key={service.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -419,7 +419,8 @@ const ServicesPage = () => {
                   {service.price}
                 </span>
               </motion.div>
-            ))}
+            ))} */}
+            <h2>Coming Soon</h2>
           </div>
         </div>
       </section>
@@ -452,7 +453,7 @@ const ServicesPage = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto">
-            {homeServices.map((service, index) => (
+            {/* {homeServices.map((service, index) => (
               <motion.div
                 key={service.name}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -477,7 +478,8 @@ const ServicesPage = () => {
                   <ArrowRight size={12} />
                 </Link>
               </motion.div>
-            ))}
+            ))} */}
+            <h2>Comming Soon</h2>
           </div>
         </div>
       </section>

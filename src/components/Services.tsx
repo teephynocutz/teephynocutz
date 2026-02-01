@@ -182,7 +182,7 @@ const Services = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {additionalServices.map((service) => (
+            {/* {additionalServices.map((service) => (
               <div
                 key={service.name}
                 className="p-4 rounded-sm border border-border/50 hover:border-primary/50 bg-background/50 transition-all group cursor-pointer"
@@ -199,7 +199,8 @@ const Services = () => {
                   {service.price}
                 </span>
               </div>
-            ))}
+            ))} */}
+            <h2>Comming Soon</h2>
           </div>
         </motion.div>
       </div>
