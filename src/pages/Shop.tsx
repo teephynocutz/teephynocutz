@@ -130,7 +130,7 @@ const Shop = () => {
       {/* Products Grid */}
       <section className="py-10 sm:py-12 md:py-16 lg:py-24 bg-background-secondary">
         <div className="container mx-auto px-4 sm:px-6">
-          {currentCategory && (
+          {/* {currentCategory && (
             <>
               <motion.div
                 key={currentCategory.id}
@@ -180,7 +180,8 @@ const Shop = () => {
                 ))}
               </div>
             </>
-          )}
+          )} */}
+          <div><h1 className='text-center'>Coming Soon</h1></div>
         </div>
       </section>
 
