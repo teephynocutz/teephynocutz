@@ -6,6 +6,7 @@ import Booking from '@/components/Booking';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import WigCarousel from '@/components/WigCarousel';
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Services />
+      <WigCarousel />
       <Gallery />
       <Booking />
       <About />

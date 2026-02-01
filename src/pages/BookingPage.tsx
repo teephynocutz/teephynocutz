@@ -130,7 +130,7 @@ export default function BookingPage() {
     setApiError("")
 
     const payload = {
-      type: form.type.toUpperCase(),
+      type: form.type,
       services: form.services,
       date: form.date?.toISOString(),
       time: form.time,
