@@ -188,6 +188,7 @@ export default function BookingPage() {
   const payload = {
     ...form,
     totalPrice,
+    type: form.type.toUpperCase()
   }
 
   const result = bookingSchema.safeParse(payload)
