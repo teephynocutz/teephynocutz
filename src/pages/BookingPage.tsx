@@ -9,7 +9,7 @@ import { bookingSchema } from "@/validation/bookingSchema"
 import Navbar from "@/components/Navbar"
 import { api } from "@/lib/api"
 import { useNavigate } from "react-router-dom"
-
+import PhoneInput from 'react-phone-number-input'
 
 
 
@@ -283,6 +283,7 @@ export default function BookingPage() {
             {/* DATE + TIME */}
             <div className="grid grid-cols-2 gap-3">
               <Popover>
+                <label className="text-sm font-medium">Select Date</label>
                 <PopoverTrigger asChild>
                   <button className="py-4 rounded-2xl border border-border bg-card text-left px-4">
                     {form.date
@@ -299,7 +300,7 @@ export default function BookingPage() {
                   />
                 </PopoverContent>
               </Popover>
-
+              <label className="text-sm font-medium ">Select Time</label>
               <input
                 type="time"
                 value={form.time}
@@ -344,6 +345,7 @@ export default function BookingPage() {
 
             {!isAuthenticated && (
               <div className="rounded-3xl border border-border bg-card p-5 space-y-4">
+                <label className="text-sm font-medium">Full Name</label>
                 <input
                   placeholder="Full name"
                   value={form.fullName}
@@ -352,6 +354,7 @@ export default function BookingPage() {
                   }
                   className="w-full py-4 px-4 rounded-2xl border border-border bg-background"
                 />
+                <label className="text-sm font-medium">Email</label>
                 <input
                   placeholder="Email"
                   value={form.email}
@@ -360,14 +363,25 @@ export default function BookingPage() {
                   }
                   className="w-full py-4 px-4 rounded-2xl border border-border bg-background"
                 />
-                <input
-                  placeholder="Phone"
-                  value={form.phone}
-                  onChange={(e) =>
-                    setForm({ ...form, phone: e.target.value })
-                  }
-                  className="w-full py-4 px-4 rounded-2xl border border-border bg-background"
-                />
+
+                {/* GUEST INFO SECTION (Example Step 2) */}
+                <div className=" space-y-4">
+                  <div className=" relative space-y-2">
+                    <label className="text-xs font-semibold uppercase tracking-widest text-muted-foreground ml-1">
+                      Phone Number
+                    </label>
+                    <div className="phone-input-container flex items-center p-4 rounded-xl border border-border bg-card focus-within:border-primary/50 transition-all duration-300">
+                      <PhoneInput
+                        international
+                        defaultCountry="ZA" // South Africa
+                        placeholder="Enter mobile number"
+                        value={form.phone}
+                        onChange={(val) => setForm({ ...form, phone: val || "" })}
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+                </div>          
               </div>
             )}
 

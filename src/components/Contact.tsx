@@ -156,7 +156,7 @@ const Contact = () => {
               viewport={{ once: true }}
               className="text-center lg:text-left"
             >
-              <a href="#booking" className="btn-gold inline-block">
+              <a href="/booking" className="btn-gold inline-block">
                 Book Your Visit
               </a>
             </motion.div>

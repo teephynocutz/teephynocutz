@@ -2,12 +2,12 @@ import React from "react";
 import { Carousel, Card, BlurImage } from "@/components/ui/apple-cards-carousel";
 import { Button } from "@/components/ui/button";
 import { IconShoppingCart, IconHeart } from "@tabler/icons-react";
-import wigLongBlack from "@/assets/wigs/long-wig.jpeg";
-import wig from "@/assets/wigs/wig.jpeg";
-import wigYellow from "@/assets/wigs/yellow.jpeg";
+import wigLongBlack from "@/assets/wigs/5by5-28-inches-r11.jpeg";
+import wig from "@/assets/wigs/5by5-inches-grey-5000.jpeg";
+import wigYellow from "@/assets/wigs/12-inches-frontal-orange-4500.jpeg";
 import wigWhite from "@/assets/wigs/white.jpeg";
-import wigOrange from "@/assets/wigs/orange-wig.jpeg";
-import wigBrownBlack from "@/assets/wigs/brow-black.jpeg";
+import wigOrange from "@/assets/wigs/30-inches-grey-blond-15000.jpeg";
+import wigBrownBlack from "@/assets/wigs/30-inches-grey-blond-15000.jpeg";
 
 interface WigProduct {
   productId: string;
@@ -202,13 +202,13 @@ const wigProducts: WigProduct[] = [
 
 // Beautiful wig images from Unsplash
 const wigImages = [
-  wigLongBlack,
+  wigOrange,
   wigBrownBlack,
   wig,
   wigYellow,
   wigYellow,
   wigOrange,
-  wigOrange,
+  wigLongBlack,
   wigLongBlack,
   wigBrownBlack,
   wig,
