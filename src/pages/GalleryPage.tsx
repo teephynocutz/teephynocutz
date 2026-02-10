@@ -5,9 +5,10 @@ import { X, Instagram, Grid, Rows } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-import salonInside from '@/assets/salon-inside.jpg';
-import salonInside2 from '@/assets/salon-inside-2.jpg';
-import salonCouch from '@/assets/salon-couch.jpg';
+import hairstyling0ne from '@/assets/Hairstyles/hairStyling-1.jpg';
+import hairstylingTwo from '@/assets/Hairstyles/haiStyling-2.jpg';
+import hairstylingThree from '@/assets/Hairstyles/hairStyling-3.jpg';
+import hairstylingFour from '@/assets/Hairstyles/hairStyling-4.jpg';
 import banners from '@/assets/banners.jpeg';
 import serviceBraids from '@/assets/service-braids.jpg';
 import serviceManicure from '@/assets/service-manicure.jpg';
@@ -20,25 +21,25 @@ import haircutFive from '@/assets/men/haircut-5.jpg';
 import serviceShaving from "@/assets/services/shaving.jpg"
 
 const galleryImages = [
-  { src: salonInside, alt: 'Salon Interior', category: 'Interior' },
+  { src: hairstyling0ne, alt: 'Hair styles', category: 'Hairstyles' },
   { src:haircutZero, alt: 'Precision Haircut', category: 'Haircuts' },
   { src: serviceBraids, alt: 'Expert Braiding', category: 'Braids' },
   { src: haircutOne, alt: 'Style Cut', category: 'Haircuts' },
-  { src: salonCouch, alt: 'Waiting Area', category: 'Interior' },
+  { src: hairstylingTwo, alt: 'Hairstyling', category: 'Hairstyles' },
   { src: banners, alt: 'Teephyno Cutz Banner', category: 'Brand' },
    { src: haircutTwo, alt: 'Style Cut', category: 'Haircuts' },
-  { src: salonInside2, alt: 'Salon View', category: 'Interior' },
+  { src: hairstylingThree, alt: 'Premium View', category: 'Hairstyles' },
   { src: serviceManicure, alt: 'Nail Care', category: 'Nails' },
    { src: haircutThree, alt: 'Style Cut', category: 'Haircuts' },
   { src: serviceShaving, alt: 'Classic Shave', category: 'Grooming' },
-  { src: salonInside, alt: 'Premium Space', category: 'Interior' },
+  { src: hairstylingFour, alt: 'Premium Hair styles', category: 'Hairstyles' },
    { src: haircutFour, alt: 'Style Cut', category: 'Haircuts' },
   { src: serviceBraids, alt: 'Braiding Art', category: 'Braids' },
   { src: serviceManicure, alt: 'Manicure', category: 'Nails' },
    { src: haircutFive, alt: 'Style Cut', category: 'Haircuts' },
 ];
 
-const categories = ['All', 'Interior', 'Haircuts', 'Braids', 'Nails', 'Grooming', 'Brand'];
+const categories = ['All', 'Hairstyles', 'Haircuts', 'Braids', 'Nails', 'Pedicures', 'Manicures', "Lashes", 'Massage', 'Tattoo'];
 
 const GalleryPage = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
