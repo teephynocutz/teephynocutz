@@ -8,25 +8,34 @@ import Footer from '@/components/Footer';
 import salonInside from '@/assets/salon-inside.jpg';
 import salonInside2 from '@/assets/salon-inside-2.jpg';
 import salonCouch from '@/assets/salon-couch.jpg';
-import banner from '@/assets/banner.jpg';
-import serviceHaircut from '@/assets/service-haircut.jpg';
+import banners from '@/assets/banners.jpeg';
 import serviceBraids from '@/assets/service-braids.jpg';
 import serviceManicure from '@/assets/service-manicure.jpg';
-import serviceShaving from '@/assets/service-shaving.jpg';
+import haircutZero from '@/assets/men/haircut-0.jpeg';
+import haircutOne from '@/assets/men/haircut-1.jpeg';
+import haircutTwo from '@/assets/men/haircut-2.jpeg';
+import haircutThree from '@/assets/men/haircut-3.jpg';
+import haircutFour from '@/assets/men/haircut-4.jpg';
+import haircutFive from '@/assets/men/haircut-5.jpg';
+import serviceShaving from "@/assets/services/shaving.jpg"
 
 const galleryImages = [
   { src: salonInside, alt: 'Salon Interior', category: 'Interior' },
-  { src: serviceHaircut, alt: 'Precision Haircut', category: 'Haircuts' },
+  { src:haircutZero, alt: 'Precision Haircut', category: 'Haircuts' },
   { src: serviceBraids, alt: 'Expert Braiding', category: 'Braids' },
+  { src: haircutOne, alt: 'Style Cut', category: 'Haircuts' },
   { src: salonCouch, alt: 'Waiting Area', category: 'Interior' },
-  { src: banner, alt: 'Teephyno Cutz Banner', category: 'Brand' },
+  { src: banners, alt: 'Teephyno Cutz Banner', category: 'Brand' },
+   { src: haircutTwo, alt: 'Style Cut', category: 'Haircuts' },
   { src: salonInside2, alt: 'Salon View', category: 'Interior' },
   { src: serviceManicure, alt: 'Nail Care', category: 'Nails' },
+   { src: haircutThree, alt: 'Style Cut', category: 'Haircuts' },
   { src: serviceShaving, alt: 'Classic Shave', category: 'Grooming' },
   { src: salonInside, alt: 'Premium Space', category: 'Interior' },
-  { src: serviceHaircut, alt: 'Style Cut', category: 'Haircuts' },
+   { src: haircutFour, alt: 'Style Cut', category: 'Haircuts' },
   { src: serviceBraids, alt: 'Braiding Art', category: 'Braids' },
   { src: serviceManicure, alt: 'Manicure', category: 'Nails' },
+   { src: haircutFive, alt: 'Style Cut', category: 'Haircuts' },
 ];
 
 const categories = ['All', 'Interior', 'Haircuts', 'Braids', 'Nails', 'Grooming', 'Brand'];

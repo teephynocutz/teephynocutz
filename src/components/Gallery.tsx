@@ -6,7 +6,7 @@ import { X, Instagram } from 'lucide-react';
 import salonInside from '@/assets/welcome-section.jpg';
 import salonInside2 from '@/assets/hairdresser.jpg';
 import salonCouch from '@/assets/salon-couch.jpg';
-import banner from '@/assets/banner.jpg';
+import banner from '@/assets/banners.jpeg';
 import serviceHaircut from '@/assets/salon-sapce-3.jpg';
 import serviceBraids from '@/assets/salon-inside.jpg';
 import poolTable from '@/assets/interior-pool-table.jpg';
