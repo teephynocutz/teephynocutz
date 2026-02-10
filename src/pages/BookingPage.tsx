@@ -156,7 +156,7 @@ export default function BookingPage() {
 
     console.log("BOOKING PAYLOAD →", payload)
 
-    const res = await api.post("/api/bookings", payload)
+    const res = await api.post("api/bookings", payload)
 
     console.log("BOOKING SUCCESS →", res.data)
     setSuccess(true)
