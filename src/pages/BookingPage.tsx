@@ -310,16 +310,20 @@ export default function BookingPage() {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setForm({ ...form, time: e.target.value })
                     }
-                    className="
-                      w-full py-4 px-4 rounded-2xl border border-border bg-card 
-                      text-foreground outline-none transition-all
-                      focus:ring-2 focus:ring-primary/20 focus:border-primary
-                      accent-primary cursor-pointer
-                      /* Styles the clock icon for Chrome/Safari */
-                      [&::-webkit-calendar-picker-indicator]:invert 
-                      [&::-webkit-calendar-picker-indicator]:cursor-pointer
-                      [&::-webkit-calendar-picker-indicator]:hover:opacity-70
-                    "
+                    className={`
+        w-full py-4 px-4 rounded-2xl border border-border bg-card 
+        text-white outline-none transition-all
+        focus:ring-2 focus:ring-primary/20 focus:border-primary
+        accent-primary cursor-pointer
+        
+        /* 1. Make Clock Icon White */
+        [&::-webkit-calendar-picker-indicator]:invert
+        [&::-webkit-calendar-picker-indicator]:brightness-200
+        [&::-webkit-calendar-picker-indicator]:cursor-pointer
+        
+        /* 2. Handle Placeholder Appearance */
+        ${!form.time ? "text-white/40" : "text-white"}
+      `}
                  />
               </div>
 
