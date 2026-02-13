@@ -366,18 +366,21 @@ export default function BookingPage() {
 
                 {/* GUEST INFO SECTION (Example Step 2) */}
                 <div className=" space-y-4">
-                  <div className=" relative space-y-2">
+                  <div className="space-y-2">
                     <label className="text-xs font-semibold uppercase tracking-widest text-muted-foreground ml-1">
                       Phone Number
                     </label>
-                    <div className="phone-input-container flex items-center p-4 rounded-xl border border-border bg-card focus-within:border-primary/50 transition-all duration-300">
+                    <div className="">
                       <PhoneInput
                         international
                         defaultCountry="ZA" // South Africa
                         placeholder="Enter mobile number"
                         value={form.phone}
                         onChange={(val) => setForm({ ...form, phone: val || "" })}
-                        className="w-full"
+                        className="flex items-center gap-2"
+                        numberInputProps={{
+        className: "w-full rounded-md border-gray-300 p-2 focus:ring-blue-500 focus:border-blue-500" // Tailwind classes for the input
+      }}
                       />
                     </div>
                   </div>

@@ -737,48 +737,20 @@
 
 /* --- Twilio Phone Input Luxury UI Fix --- */
 
-.phone-input-container .PhoneInput {
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-}
 
-/* 1. Shrink the left side (Flag & Dropdown) */
-.phone-input-container .PhoneInputCountry {
-  display: flex !important;
-  align-items: center !important;
-  flex: 0 0 auto !important; /* Prevents it from growing */
-  margin-right: 12px !important;
-}
 
-/* 2. Style the Flag Icon */
-.phone-input-container .PhoneInputCountryIcon {
-  width: 28px !important;
-  height: auto !important;
-  border-radius: 2px;
-}
 
-/* 3. Expand the Input area to fill all remaining space */
-.phone-input-container .PhoneInputInput {
-  flex: 1 1 auto !important; /* Takes up ALL remaining space */
-  background: transparent !important;
-  border: none !important;
-  outline: none !important;
-  color: hsl(var(--foreground)) !important;
-  font-size: 16px !important; /* Prevents iOS zoom on focus */
-  width: 100% !important;
-}
+
+
 
 /* 4. Fix dropdown visibility (Text inside the select) */
-.phone-input-container .PhoneInputCountrySelect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0; /* Keeps native select functional but hidden */
-  cursor: pointer;
+.phone-input-container .PhoneInputCountry {
+  position: relative !important;
 }
+
+/* Keep select only over the flag area */
+
+
 
 /* 5. Gold Arrow color */
 .phone-input-container .PhoneInputCountrySelectArrow {
@@ -789,28 +761,19 @@
 
 /* --- Fix Country List Background & Text --- */
 
-.phone-input-container .PhoneInputCountrySelect {
-  /* Set background to your --card (Charcoal) */
-  background-color: hsl(var(--card)) !important;
-  
-  /* Set text to your --foreground (Off-white) */
-  color: hsl(var(--foreground)) !important;
-
-  /* Optional: Ensure the options themselves are themed (Browser support varies) */
-  appearance: none;
-  -webkit-appearance: none;
-  padding-right: 20px;
+/* In your global.css */
+.PhoneInput {
+  @apply flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500;
 }
 
-/* Target the actual option elements (Works in most modern browsers) */
-.phone-input-container .PhoneInputCountrySelect option {
-  background-color: hsl(var(--card)) !important;
-  color: hsl(var(--foreground)) !important;
-  padding: 4px !important;
+.PhoneInputInput {
+  @apply outline-none border-none ml-2 w-full text-gray-700 bg-transparent;
 }
 
-/* Ensure the focus state matches your brand gold */
-.phone-input-container .PhoneInputCountrySelect:focus {
-  outline: none;
-  color: hsl(var(--primary)) !important;
+.PhoneInputCountrySelect {
+  @apply cursor-pointer opacity-0 absolute top-0 left-0 w-full h-full;
 }
+
+
+
+
