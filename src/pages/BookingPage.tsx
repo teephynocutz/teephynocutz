@@ -295,7 +295,10 @@ export default function BookingPage() {
                     mode="single"
                     selected={form.date}
                     onSelect={(d) => setForm({ ...form, date: d })}
-                    disabled={(d) => d < new Date()}
+                    // Disables any date that is strictly before today at 00:00:00
+                    disabled={(date) => 
+                      date < new Date(new Date().setHours(0, 0, 0, 0))
+                    }
                   />
                 </PopoverContent>
               </Popover>
