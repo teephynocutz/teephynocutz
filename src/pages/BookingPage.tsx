@@ -370,7 +370,7 @@ export default function BookingPage() {
                     <label className="text-xs font-semibold uppercase tracking-widest text-muted-foreground ml-1">
                       Phone Number
                     </label>
-                    <div className="">
+                    <div className="relative">
                       <PhoneInput
                         international
                         defaultCountry="ZA" // South Africa
