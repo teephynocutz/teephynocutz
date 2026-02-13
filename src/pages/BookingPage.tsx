@@ -281,9 +281,8 @@ export default function BookingPage() {
             </div>
 
             {/* DATE + TIME */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Popover>
-                <label className="text-sm font-medium">Select Date</label>
                 <PopoverTrigger asChild>
                   <button className="py-4 rounded-2xl border border-border bg-card text-left px-4">
                     {form.date
@@ -300,15 +299,27 @@ export default function BookingPage() {
                   />
                 </PopoverContent>
               </Popover>
-              <label className="text-sm font-medium ">Select Time</label>
-              <input
-                type="time"
-                value={form.time}
-                onChange={(e) =>
-                  setForm({ ...form, time: e.target.value })
-                }
-                className="[&::-webkit-calendar-picker-indicator]:invert py-4 px-4 rounded-2xl border border-border bg-card accent-primary cursor-pointer"
-              />
+              <div className="flex flex-1">
+
+                <input
+                   type="time"
+                    value={form.time}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setForm({ ...form, time: e.target.value })
+                    }
+                    className="
+                      w-full py-4 px-4 rounded-2xl border border-border bg-card 
+                      text-foreground outline-none transition-all
+                      focus:ring-2 focus:ring-primary/20 focus:border-primary
+                      accent-primary cursor-pointer
+                      /* Styles the clock icon for Chrome/Safari */
+                      [&::-webkit-calendar-picker-indicator]:invert 
+                      [&::-webkit-calendar-picker-indicator]:cursor-pointer
+                      [&::-webkit-calendar-picker-indicator]:hover:opacity-70
+                    "
+                 />
+              </div>
+
             </div>
 
             <button
