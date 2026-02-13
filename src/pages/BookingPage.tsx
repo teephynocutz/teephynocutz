@@ -370,14 +370,14 @@ export default function BookingPage() {
                     <label className="text-xs font-semibold uppercase tracking-widest text-muted-foreground ml-1">
                       Phone Number
                     </label>
-                    <div className="relative">
+                    <div>
                       <PhoneInput
                         international
                         defaultCountry="ZA" // South Africa
                         placeholder="Enter mobile number"
                         value={form.phone}
                         onChange={(val) => setForm({ ...form, phone: val || "" })}
-                        className="flex items-center gap-2"
+                        className="relative flex items-center gap-2"
                         numberInputProps={{
         className: "w-full rounded-md border-gray-300 p-2 focus:ring-blue-500 focus:border-blue-500" // Tailwind classes for the input
       }}

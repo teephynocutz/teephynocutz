@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
-
+@import 'react-phone-number-input/style.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -739,40 +739,26 @@
 
 
 
-
-
-
-
-/* 4. Fix dropdown visibility (Text inside the select) */
-.phone-input-container .PhoneInputCountry {
-  position: relative !important;
-}
-
-/* Keep select only over the flag area */
-
-
-
-/* 5. Gold Arrow color */
-.phone-input-container .PhoneInputCountrySelectArrow {
-  color: hsl(var(--primary)) !important;
-  opacity: 0.8;
-  margin-left: 4px;
-}
-
-/* --- Fix Country List Background & Text --- */
-
-/* In your global.css */
 .PhoneInput {
-  @apply flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500;
+  @apply flex items-center gap-2 border border-slate-200 rounded-md px-3 py-2 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500;
 }
 
 .PhoneInputInput {
-  @apply outline-none border-none ml-2 w-full text-gray-700 bg-transparent;
+  @apply flex-1 bg-transparent text-sm outline-none;
 }
 
 .PhoneInputCountrySelect {
-  @apply cursor-pointer opacity-0 absolute top-0 left-0 w-full h-full;
+  @apply cursor-pointer bg-black text-sm border-none focus:ring-0;
 }
+
+.PhoneInputCountryIcon--square {
+  @apply rounded-sm; /* Style flags */
+}
+
+
+
+
+
 
 
 
