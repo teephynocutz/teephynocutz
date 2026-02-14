@@ -48,7 +48,7 @@ const ServiceDetail = () => {
           </div>
 
           <a
-            href="/#booking"
+            href="/booking"
             className="inline-block mt-8 btn-gold px-8 py-3"
           >
             Book Now
