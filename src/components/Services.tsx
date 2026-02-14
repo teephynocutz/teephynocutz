@@ -200,7 +200,7 @@ const Services = () => {
                 </span>
               </div>
             ))} */}
-            <h2>Comming Soon</h2>
+            {/* <h2>Comming Soon</h2> */}
           </div>
         </motion.div>
       </div>

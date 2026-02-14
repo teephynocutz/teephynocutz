@@ -755,6 +755,14 @@
   @apply rounded-sm; /* Style flags */
 }
 
+/* This only triggers when the site is viewed inside an App/WebView */
+@media (display-mode: standalone) {
+  nav, .main-header, .mobile-footer {
+    display: none !important;
+  }
+}
+
+
 
 
 

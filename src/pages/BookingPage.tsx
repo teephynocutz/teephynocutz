@@ -312,8 +312,8 @@ export default function BookingPage() {
 
                 </PopoverContent>
               </Popover>
-              <div className="flex flex-1">
-
+              <div className="w-full">
+                <label className="flex sm:hidden">Time</label>
                 <input
                    type="time"
                     value={form.time}
