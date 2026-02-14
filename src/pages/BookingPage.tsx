@@ -290,16 +290,26 @@ export default function BookingPage() {
                       : "Select date"}
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="p-0">
+                <PopoverContent className="w-auto p-0 border-border bg-card" align="start">
                   <Calendar
-                    mode="single"
-                    selected={form.date}
-                    onSelect={(d) => setForm({ ...form, date: d })}
-                    // Disables any date that is strictly before today at 00:00:00
-                    disabled={(date) => 
-                      date < new Date(new Date().setHours(0, 0, 0, 0))
-                    }
-                  />
+  mode="single"
+  selected={form.date}
+  onSelect={(d) => {
+    if (d) setForm({ ...form, date: d });
+  }}
+  // 1. Restriction: Today and onwards
+  disabled={{ before: new Date(new Date().setHours(0, 0, 0, 0)) }}
+  // 2. Fix Double Highlight: Remove the "today" highlight entirely
+  modifiers={{
+    today: [] // Overrides the internal 'today' list so it doesn't get special styling
+  }}
+  // 3. Prevent unselecting
+  required
+  initialFocus
+  className="bg-card text-foreground"
+/>
+
+
                 </PopoverContent>
               </Popover>
               <div className="flex flex-1">
@@ -311,19 +321,19 @@ export default function BookingPage() {
                       setForm({ ...form, time: e.target.value })
                     }
                     className={`
-        w-full py-4 px-4 rounded-2xl border border-border bg-card 
-        text-white outline-none transition-all
-        focus:ring-2 focus:ring-primary/20 focus:border-primary
-        accent-primary cursor-pointer
-        
-        /* 1. Make Clock Icon White */
-        [&::-webkit-calendar-picker-indicator]:invert
-        [&::-webkit-calendar-picker-indicator]:brightness-200
-        [&::-webkit-calendar-picker-indicator]:cursor-pointer
-        
-        /* 2. Handle Placeholder Appearance */
-        ${!form.time ? "text-white/40" : "text-white"}
-      `}
+                    w-full py-4 px-4 rounded-2xl border border-border bg-black 
+                    text-white outline-none transition-all
+                    focus:ring-2 focus:ring-primary/20 focus:border-primary
+                    accent-primary cursor-pointer
+                    
+                    /* 1. Make Clock Icon White */
+                    [&::-webkit-calendar-picker-indicator]:invert
+                    [&::-webkit-calendar-picker-indicator]:brightness-200
+                    [&::-webkit-calendar-picker-indicator]:cursor-pointer
+                    
+                    /* 2. Handle Placeholder Appearance */
+                    ${!form.time ? "text-white/40" : "text-white"}
+                  `}
                  />
               </div>
 
