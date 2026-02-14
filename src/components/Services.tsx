@@ -174,7 +174,7 @@ const Services = () => {
               </p>
             </div>
             <a
-              href="#booking"
+              href="/services"
               className="btn-gold text-sm px-6 py-3 text-center"
             >
               View All Prices
