@@ -17,9 +17,6 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
-      {isMobileApp && <Link to="/" className="flex items-center">
-            <img src={logo} alt="Teephyno Cutz" className="h-16 h-16 w-auto" />
-          </Link>},
       <Hero />
       <Services />
       <WigCarousel />

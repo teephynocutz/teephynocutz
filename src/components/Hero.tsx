@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import salonInterior from '@/assets/vid-bg-ios.mp4';
 import { useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
-
+import logo from '@/assets/logo-banner.png';
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -23,6 +23,8 @@ const Hero = () => {
       document.removeEventListener("touchstart", attemptPlay);
     };
   }, []);
+
+  const isMobileApp = navigator.userAgent.includes("TeephynoCutzApp-1.0");
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -102,6 +104,9 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.9 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
+          {isMobileApp && <Link to="/" className="flex items-center">
+            <img src={logo} alt="Teephyno Cutz" className="h-16 h-16 w-auto" />
+          </Link>}
           <Link to="/booking" className="btn-gold">
             Book Appointment
           </Link>
