@@ -105,8 +105,8 @@ export default function BookingPage() {
   const [apiError, setApiError] = useState("")
   const [showErrorDialog, setShowErrorDialog] = useState(false)
   // Set yesterday restriction
-  const yesterday = new Date();
-  yesterday.setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
 
   const [form, setForm] = useState({
@@ -301,7 +301,7 @@ export default function BookingPage() {
                     }}
                     // 1. Restriction: Today and onwards
                     // disabled={{ before: new Date(new Date().setHours(0, 0, 0, 0)) }}
-                    disabled={[yesterday]}
+                    disabled={{ before: today }}
                     // 2. Fix Double Highlight: Remove the "today" highlight entirely
                     modifiers={{
                       today: [] // Overrides the internal 'today' list so it doesn't get special styling
