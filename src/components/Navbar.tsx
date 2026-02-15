@@ -40,7 +40,11 @@ const Navbar = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+  // Check if the custom string we set in Expo exists in the browser's agent
+  const isMobileApp = navigator.userAgent.includes("TeephynoCutzApp-1.0");
 
+  // If it's the mobile app, return nothing (hide header)
+  if (isMobileApp) return null;
   return (
     <>
       <motion.nav

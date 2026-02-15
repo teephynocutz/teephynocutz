@@ -27,6 +27,12 @@ const Footer = () => {
     { icon: Twitter, href: '#', label: 'Twitter' },
   ];
 
+  // Check if the custom string we set in Expo exists in the browser's agent
+  const isMobileApp = navigator.userAgent.includes("TeephynoCutzApp-1.0");
+
+  // If it's the mobile app, return nothing (hide header)
+  if (isMobileApp) return null;
+
   return (
     <footer className="bg-background-secondary border-t border-border/30">
       {/* Main Footer */}
