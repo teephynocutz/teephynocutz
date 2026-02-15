@@ -106,7 +106,6 @@ export default function BookingPage() {
   const [showErrorDialog, setShowErrorDialog] = useState(false)
   // Set yesterday restriction
   const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
   yesterday.setHours(0, 0, 0, 0);
 
 
