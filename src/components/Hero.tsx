@@ -71,7 +71,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-6 mt-16"
         >
-          {isMobileApp && <Link to="/" className="flex items-center">
+          {isMobileApp && <Link to="/" className="flex items-center w-full mb-10" >
             <img src={logo} alt="Teephyno Cutz" className="h-16 h-16 w-auto" />
           </Link>}
           <span className="inline-block px-4 py-2 border border-primary/40 rounded-full text-primary text-xs uppercase tracking-[0.3em] font-medium">
