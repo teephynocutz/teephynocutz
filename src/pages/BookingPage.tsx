@@ -104,7 +104,10 @@ export default function BookingPage() {
   const [success, setSuccess] = useState(false)
   const [apiError, setApiError] = useState("")
   const [showErrorDialog, setShowErrorDialog] = useState(false)
-
+  // Set yesterday restriction
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(0, 0, 0, 0);
 
 
   const [form, setForm] = useState({
@@ -292,21 +295,22 @@ export default function BookingPage() {
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0 border-border bg-card" align="start">
                   <Calendar
-  mode="single"
-  selected={form.date}
-  onSelect={(d) => {
-    if (d) setForm({ ...form, date: d });
-  }}
-  // 1. Restriction: Today and onwards
-  disabled={{ before: new Date(new Date().setHours(0, 0, 0, 0)) }}
-  // 2. Fix Double Highlight: Remove the "today" highlight entirely
-  modifiers={{
-    today: [] // Overrides the internal 'today' list so it doesn't get special styling
-  }}
-  // 3. Prevent unselecting
-  required
-  initialFocus
-  className="bg-card text-foreground"
+                    mode="single"
+                    selected={form.date}
+                    onSelect={(d) => {
+                      if (d) setForm({ ...form, date: d });
+                    }}
+                    // 1. Restriction: Today and onwards
+                    // disabled={{ before: new Date(new Date().setHours(0, 0, 0, 0)) }}
+                    disabled={[yesterday]}
+                    // 2. Fix Double Highlight: Remove the "today" highlight entirely
+                    modifiers={{
+                      today: [] // Overrides the internal 'today' list so it doesn't get special styling
+                    }}
+                    // 3. Prevent unselecting
+                    required
+                    initialFocus
+                    className="bg-card text-foreground"
 />
 
 
@@ -487,7 +491,7 @@ export default function BookingPage() {
           </motion.div>
         </motion.div>
       )}
-</AnimatePresence>
+      </AnimatePresence>
 
     </div>
   )
