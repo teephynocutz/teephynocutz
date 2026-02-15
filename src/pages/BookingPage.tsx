@@ -135,7 +135,7 @@ export default function BookingPage() {
     const [h, m] = form.time.split(":").map(Number)
     const selected = new Date(form.date)
     selected.setHours(h, m)
-    return !isBefore(selected, addHours(new Date(), 12))
+    return !isBefore(selected, addHours(new Date(), 0))
   }
 
 
@@ -294,6 +294,7 @@ export default function BookingPage() {
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0 border-border bg-card" align="start">
                   <Calendar
+                
                     mode="single"
                     selected={form.date}
                     onSelect={(d) => {
