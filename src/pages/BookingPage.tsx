@@ -38,6 +38,24 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
       ],
     },
     {
+      category: "Nails",
+      services: [
+        { name: "Acrylic Nails Long", price: 600 },
+        { name: "Acrylic Nails Short", price: 400 },
+
+        { name: "Gel Nails Long", price: 500 },
+        { name: "Gel Nails Short", price: 350 },
+
+
+        { name: "Toes Plain Colour", price: 250 },
+        { name: "Toes ", price: 150 },
+        { name: "Toes Nails", price: 300 },
+
+        { name: "Pedicure", price: 400 },
+        { name: "Manicure", price: 250 },
+      ],
+    },
+    {
       category: "TINT",
       services: [
         { name: "Bleach", price: 400 },
@@ -65,17 +83,20 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
   ],
   vip: [
     {
-      category: "VIP Grooming",
+      category: "👑👑 VIP PRICES - HAIRCUT 👑👑",
       services: [
-        { name: "VIP Haircut", price: 250 },
-        { name: "VIP Beard Trim", price: 180 },
+        { name: "OG (with Facial & Lap Dance", price: 2500.00 },
+        { name: "Millennial (with Facial)", price: 1000.00 },
+        { name: "Gen Z(Barbing Only)", price: 600.00 }
       ],
     },
     {
-      category: "VIP Styling",
+      category: "👑👑 VIP PRICES - DREADS 👑👑",
       services: [
-        { name: "VIP Wash & Style", price: 300 },
-        { name: "VIP Braids", price: 600 },
+        { name: "OG Palm Rolling", price: 2500.00 },
+        { name: "Millennnial", price: 2000.00 },
+        { name: "Gen", price: 1500.00},
+        { name: "Crochet Extra", price: 300.00}
       ],
     },
   ],
@@ -83,10 +104,10 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
     {
       category: "Home Service",
       services: [
-        { name: "Adult Home Haircut", price: 300 },
-        { name: "Kids Home Haircut", price: 200 },
-        { name: "Home Manicure", price: 300 },
-        { name: "Home Pedicure", price: 350 },
+        { name: "Adult Home Haircut", price: 1500.00 },
+        { name: "Kids Home Haircut", price: 900.00 },
+        { name: "Home Manicure", price: 900 },
+        { name: "Home Pedicure", price: 850 },
       ],
     },
   ],

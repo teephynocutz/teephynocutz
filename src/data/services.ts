@@ -32,7 +32,7 @@ export const services: Service[] = [
     title: "Manicure",
     slug: "manicure",
     description: "Professional manicure service. Fresh nails, fresh mood 💖 Because life’s too short for boring manicures.",
-    price: "From R200",
+    price: "From R250",
     duration: "45 min",
     image: serviceManicure,
     icon: Sparkles,
@@ -42,7 +42,7 @@ export const services: Service[] = [
     slug: "pedicure",
     description:
       "A relaxing pedicure that cleans, shapes, and beautifies your feet—leaving your nails polished and your skin soft, smooth, and refreshed.",
-    price: "From R250",
+    price: "From R400",
     duration: "60 min",
     image: servicePedicure,
     icon: Sparkles,
