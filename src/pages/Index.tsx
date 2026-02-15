@@ -7,11 +7,19 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WigCarousel from '@/components/WigCarousel';
+import { Link } from 'react-router-dom';
+import logo from '@/assets/logo-banner.png';
 
 const Index = () => {
+  
+  const isMobileApp = navigator.userAgent.includes("TeephynoCutzApp-1.0");
+
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
+      {isMobileApp && <Link to="/" className="flex items-center">
+            <img src={logo} alt="Teephyno Cutz" className="h-50 w-auto" />
+          </Link>},
       <Hero />
       <Services />
       <WigCarousel />
