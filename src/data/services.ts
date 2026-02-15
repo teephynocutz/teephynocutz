@@ -3,7 +3,7 @@ import { Crown, Sparkles } from "lucide-react";
 import haircut from "@/assets/haircut.jpeg";
 import serviceHome from "@/assets/services/home-service.jpg";
 import serviceManicure from "@/assets/nail-artist-2.jpg";
-import serviceBraids from "@/assets/service-braids.jpg";
+import serviceBraids from "@/assets/services/braids.jpeg";
 import  servicePedicure from "@/assets/services/pedicure.jpg"
 import  serviceDreadlocks from "@/assets/services/dreadlocks.jpg"
 import serviceHairStyling from "@/assets/services/hair-styling.jpg"
