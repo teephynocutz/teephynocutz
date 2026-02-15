@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 
 import serviceHaircut from '@/assets/service-haircut.jpg';
 import serviceManicure from '@/assets/service-manicure.jpg';
-import serviceBraids from '@/assets/service-braids.jpg';
+import Braids from '@/assets/services/braids.jpeg';
 import serviceShaving from '@/assets/service-shaving.jpg';
 
 const mainServices = [
@@ -35,7 +35,7 @@ const mainServices = [
     description: 'Master braiders creating intricate styles from box braids to locs maintenance. We specialize in protective styles that last.',
     price: 'From R300',
     duration: '2-4 hrs',
-    image: serviceBraids,
+    image: Braids,
     icon: Crown,
     features: ['Custom designs', 'Scalp treatment', 'Long-lasting styles'],
   },
