@@ -762,7 +762,11 @@
   }
 }
 
-
+@media (display-mode: standalone) {
+  .your-web-header, .your-web-footer {
+    display: none !important;
+  }
+}
 
 
 
