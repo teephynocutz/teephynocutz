@@ -49,7 +49,7 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
         { name: "Straight back/up", price: 700.00 },
         
         { name: "Normal Braids waist lenght", price: 1000 },
-        { name: "Below the bum length", price: 12000 },
+        { name: "Below the bum length", price: 1200.00 },
         { name: "Knotless braids with hairpiece", price: 1300},     
         { name: "Boho braids with hairpiece", price: 600 },
         { name: "Hair dye", price: 400 },
