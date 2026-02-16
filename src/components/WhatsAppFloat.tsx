@@ -20,7 +20,7 @@ export default function WhatsappFloat() {
   Please let me know your available time slots.
   Thank you.`
 
-  const whatsappUrl = `https://web.whatsapp.com/send?phone=27698490110&text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/27698490110?text=${encodeURIComponent(
     message
   )}`
 
