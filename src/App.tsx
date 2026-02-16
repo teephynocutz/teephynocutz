@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import BookingPage from "./pages/BookingPage";
 import BookingSuccessPage from "./pages/BookingSuccessful";
 import ServiceDetail from "./pages/ServiceDetail";
+import WhatsappFloat from "./components/WhatsAppFloat";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,8 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+          {/* 👇 Always visible on every route */}
+        <WhatsappFloat />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

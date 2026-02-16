@@ -38,7 +38,7 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
       ],
     },
      {
-      category: "Hair Styling",
+      category: "🚿Hair Styling🚿",
       services: [
         { name: "Hair relaxing", price: 600 },
         { name: "Hair wash", price: 100 },

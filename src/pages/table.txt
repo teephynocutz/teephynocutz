@@ -1,0 +1,2 @@
+ // 1. Restriction: Today and onwards
+  disabled={{ before: new Date(new Date().setHours(0, 0, 0, 0)) }} . but I want to restrict only from yesterday 
