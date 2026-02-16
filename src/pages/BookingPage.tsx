@@ -37,6 +37,18 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
         { name: "Trimming Dye", price: 100 },
       ],
     },
+     {
+      category: "Hair Styling",
+      services: [
+        { name: "Hair relaxing", price: 600 },
+        { name: "Hair wash", price: 100 },
+        
+        { name: "Packing gel", price: 100 },
+        { name: "Free Hands (small)", price: 250 },      
+        { name: "Free Hands medium", price: 300 },
+        { name: "Hair wash", price: 100 },
+      ],
+    },
     {
       category: "Nails",
       services: [
@@ -85,7 +97,7 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
     {
       category: "👑👑 VIP PRICES - HAIRCUT 👑👑",
       services: [
-        { name: "OG (with Facial & Lap Dance", price: 2500.00 },
+        { name: "OG with Facial & Lap Dance", price: 2500.00 },
         { name: "Millennial (with Facial)", price: 1000.00 },
         { name: "Gen Z(Barbing Only)", price: 600.00 }
       ],
