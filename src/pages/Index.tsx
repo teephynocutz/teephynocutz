@@ -12,7 +12,6 @@ import logo from '@/assets/logo-banner.png';
 
 const Index = () => {
   
-  const isMobileApp = navigator.userAgent.includes("TeephynoCutzApp-1.0");
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">

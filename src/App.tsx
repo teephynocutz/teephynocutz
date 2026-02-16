@@ -17,7 +17,9 @@ import WhatsappFloat from "./components/WhatsAppFloat";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = function () {
+  const isMobileApp = navigator.userAgent.includes("TeephynoCutzApp-1.0");
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -38,10 +40,11 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
           {/* 👇 Always visible on every route */}
-        <WhatsappFloat />
+        {isMobileApp === false && <WhatsappFloat />}
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
+} 
 
 export default App;
