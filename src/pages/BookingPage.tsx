@@ -105,6 +105,7 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
         { name: "Afro Palm Rolling", price: 800.00 },
         { name: "Full Palm Rolling", price: 1000.00 },
         { name: "Afro Crochet", price: 1000.00 },
+        { name: "Full Crochet", price: 1200.00},
         { name: "Spot Waving", price: 500.00 },
         { name: "Waxing (Beard)", price: 300.00 },
       ],
