@@ -7,7 +7,7 @@ import serviceBraids from "@/assets/services/braids.jpeg";
 import  servicePedicure from "@/assets/services/pedicure.jpg"
 import  serviceDreadlocks from "@/assets/services/dreadlocks.jpg"
 import serviceHairStyling from "@/assets/services/hair-styling.jpg"
-import serviceShaving from "@/assets/services/shaving.jpg"
+import serviceShaving from "@/assets/services/shaving.jpeg"
 export type Service = {
   title: string;
   slug: string;
@@ -52,7 +52,7 @@ export const services: Service[] = [
     slug: "braids",
     description:
       "Neat, stylish braids customized to your look—designed to protect your hair while keeping it flawless, comfortable, and long-lasting.",
-    price: "From R250",
+    price: "From R1000",
     duration: "60 min",
     image: serviceBraids,
     icon: Sparkles,
