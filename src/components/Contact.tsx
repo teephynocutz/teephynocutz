@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Twitter, TikTok } from 'lucide-react';
 
 const Contact = () => {
   const headerRef = useRef(null);
@@ -11,29 +11,28 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      details: ['123 Long Street', 'Cape Town, 8001', 'South Africa'],
+      details: ['105 Long Street', 'Cape Town, 8001', 'South Africa'],
     },
     {
       icon: Phone,
       title: 'Phone',
-      details: ['+27 12 345 6789', '+27 98 765 4321'],
+      details: ['+27 69 849 0110', '+27 75 174 0778'],
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@teephynocutz.com', 'bookings@teephynocutz.com'],
+      details: ['teephynocutz@gmail.com'],
     },
     {
       icon: Clock,
       title: 'Hours',
-      details: ['Mon - Fri: 9:00 AM - 7:00 PM', 'Sat: 9:00 AM - 6:00 PM', 'Sun: 10:00 AM - 4:00 PM'],
+      details: ['Mon - Fri: 9:00 AM - 12:00 AM', 'Sat: 9:00 AM - 12:00 AM', 'Sun: 12:00 PM - 12:00 AM'],
     },
   ];
 
   const socials = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Instagram, href: 'https://www.instagram.com/teephyno_cutz', label: 'Instagram' },
+    { icon: TikTok, href: 'https://www.tiktok.com/@teephynobarber', label: 'Tiktok' },
   ];
 
   return (
