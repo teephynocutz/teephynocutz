@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Twitter, TikTok } from 'lucide-react';
-
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
+import { SiTiktok } from "react-icons/si";
 const Contact = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
@@ -32,7 +32,7 @@ const Contact = () => {
 
   const socials = [
     { icon: Instagram, href: 'https://www.instagram.com/teephyno_cutz', label: 'Instagram' },
-    { icon: TikTok, href: 'https://www.tiktok.com/@teephynobarber', label: 'Tiktok' },
+    { icon: SiTiktok, href: 'https://www.tiktok.com/@teephynobarber', label: 'Tiktok' },
   ];
 
   return (
