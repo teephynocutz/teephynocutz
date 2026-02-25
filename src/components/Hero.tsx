@@ -74,7 +74,7 @@ const Hero = () => {
           {isMobileApp && <Link to="/" className="flex items-center justify-center  mb-10" >
             <img src={logo} alt="Teephyno Cutz" className="h-16 h-16 w-auto" />
           </Link>}
-          <span className="inline-block px-4 py-2 border border-primary/40 rounded-full text-primary text-xs uppercase tracking-[0.3em] font-medium">
+          <span className="inline-block px-4 mt-4 py-2 border border-primary/40 rounded-full text-primary text-xs uppercase tracking-[0.3em] font-medium">
             Premium Grooming Experience
           </span>
         </motion.div>
@@ -99,7 +99,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.7 }}
           className="text-muted-foreground text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 px-4 font-light leading-relaxed"
         >
-          Elevate your style with us where precision meets artistry. Experience luxury grooming at Cape Town's 
+          Experience luxury grooming at Cape Town's 
           most exclusive unisex salon, where every cut and hair styling tells a story.
         </motion.p>
 
