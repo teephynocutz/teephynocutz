@@ -74,23 +74,23 @@ const Hero = () => {
           {isMobileApp && <Link to="/" className="flex items-center justify-center  mb-10" >
             <img src={logo} alt="Teephyno Cutz" className="h-16 h-16 w-auto" />
           </Link>}
-          <span className="inline-block px-4 mt-4 py-2 border border-primary/40 rounded-full text-primary text-xs uppercase tracking-[0.3em] font-medium">
+          <span className="inline-block px-4 mt-10 sm:mt-0 py-2 border border-primary/40 rounded-full text-primary text-xs uppercase tracking-[0.3em] font-medium">
             Premium Grooming Experience
           </span>
         </motion.div>
 
         <motion.h1
-  initial={{ opacity: 0, y: 40 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1, delay: 0.5 }}
-  className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-4 sm:mb-6 leading-tight"
->
-  You ask.
-  <br />
-  <span className="gold-text-shimmer">We cut.</span>
-  <br />
-  <span className="text-primary/90">You glow.</span>
-</motion.h1>
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground mb-4 sm:mb-6 leading-tight"
+        >
+          You ask.
+          <br />
+          <span className="gold-text-shimmer">We cut.</span>
+          <br />
+          <span className="text-primary/90">You glow.</span>
+        </motion.h1>
 
 
         <motion.p
