@@ -97,7 +97,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className="text-muted-foreground text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 px-4 font-light leading-relaxed"
+          className="hidden sm:flex text-muted-foreground text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 px-4 font-light leading-relaxed"
         >
           Experience luxury grooming at Cape Town's 
           most exclusive unisex salon, where every cut and hair styling tells a story.
