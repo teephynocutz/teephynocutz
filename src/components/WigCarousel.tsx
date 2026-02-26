@@ -1,13 +1,17 @@
 import React from "react";
-import { Carousel, Card, BlurImage } from "@/components/ui/apple-cards-carousel";
+import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Button } from "@/components/ui/button";
-import { IconShoppingCart, IconHeart } from "@tabler/icons-react";
+import { IconShoppingCart, IconHeart, IconFilter, IconChevronRight } from "@tabler/icons-react";
+
+// Asset Imports
 import wigLongBlack from "@/assets/wigs/5by5-28-inches-r11.jpeg";
 import wig from "@/assets/wigs/5by5-inches-grey-5000.jpeg";
 import wigYellow from "@/assets/wigs/12-inches-frontal-orange-4500.jpeg";
-import wigWhite from "@/assets/wigs/white.jpeg";
 import wigOrange from "@/assets/wigs/30-inches-grey-blond-15000.jpeg";
 import wigBrownBlack from "@/assets/wigs/30-inches-grey-blond-15000.jpeg";
+
+// 1. Mobile Detection Logic
+const isMobileApp = typeof window !== 'undefined' && navigator.userAgent.includes("TeephynoCutzApp-1.0");
 
 interface WigProduct {
   productId: string;
@@ -200,138 +204,137 @@ const wigProducts: WigProduct[] = [
   },
 ];
 
-// Beautiful wig images from Unsplash
 const wigImages = [
-  wigOrange,
-  wigBrownBlack,
-  wig,
-  wigYellow,
-  wigYellow,
-  wigOrange,
-  wigLongBlack,
-  wigLongBlack,
-  wigBrownBlack,
-  wig,
-  wigYellow,
-  wigYellow,
-  wigOrange,
-  wigOrange,
-  wigOrange,
-  wigOrange,
- 
+  wigOrange, wigBrownBlack, wig, wigYellow, wigYellow, wigOrange,
+  wigLongBlack, wigLongBlack, wigBrownBlack, wig, wigYellow,
+  wigYellow, wigOrange, wigOrange, wigOrange, wigOrange,
 ];
 
+// Product Modal Content (Refactored for App Feel)
 const ProductContent = ({ product }: { product: WigProduct }) => {
   return (
-    <div className="space-y-6">
-      <div className="bg-product-content rounded-3xl p-8 md:p-14">
+    <div className={`space-y-6 ${isMobileApp ? 'pb-10' : ''}`}>
+      <div className={`rounded-3xl ${isMobileApp ? 'p-4 bg-transparent' : 'p-8 md:p-14 bg-product-content'}`}>
         <div className="max-w-3xl mx-auto">
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="flex flex-wrap gap-2 mb-6">
             {product.inches.map((inch, i) => (
-              <span key={i} className="px-4 py-2 bg-badge-inch text-badge-inch-text rounded-full text-sm font-medium">
+              <span key={i} className="px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-wider">
                 {inch}
               </span>
             ))}
-            {product.colors.map((color, i) => (
-              <span key={i} className="px-4 py-2 bg-badge-color text-badge-color-text rounded-full text-sm font-medium capitalize">
-                {color}
-              </span>
-            ))}
           </div>
           
-          <p className="text-content-text text-base md:text-xl mb-6">
-            Experience luxury with our premium {product.name}. Crafted with 100% human hair 
-            for a natural look and feel. Perfect for any occasion, this wig offers versatility 
-            and elegance that will turn heads wherever you go.
+          <p className="text-muted-foreground text-sm md:text-xl mb-8 leading-relaxed">
+            Premium luxury {product.name}. Hand-selected 100% human hair.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="flex-1 h-14 text-lg" variant="default">
+          <div className="flex flex-col gap-3">
+            <Button className="w-full h-14 text-lg font-bold rounded-2xl active:scale-95 transition-transform" variant="default">
               <IconShoppingCart className="mr-2 h-5 w-5" />
               Add to Cart - R{parseFloat(product.price).toLocaleString()}
             </Button>
-            <Button className="h-14 px-6" variant="outline">
-              <IconHeart className="h-5 w-5" />
-            </Button>
+            {isMobileApp && (
+               <Button className="w-full h-14 rounded-2xl active:scale-95 transition-transform" variant="outline">
+                 <IconHeart className="mr-2 h-5 w-5" /> Save to Wishlist
+               </Button>
+            )}
           </div>
         </div>
-      </div>
-      
-      <div className="bg-product-content rounded-3xl p-8 md:p-14">
-        <h3 className="text-2xl font-bold text-content-title mb-4">Product Features</h3>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-content-text">
-          <li className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-accent rounded-full"></span>
-            100% Premium Human Hair
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-accent rounded-full"></span>
-            Pre-plucked Hairline
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-accent rounded-full"></span>
-            Bleached Knots
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-accent rounded-full"></span>
-            Heat Friendly (Up to 180°C)
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-accent rounded-full"></span>
-            Can Be Dyed & Styled
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-accent rounded-full"></span>
-            Comfortable & Breathable Cap
-          </li>
-        </ul>
       </div>
     </div>
   );
 };
 
-export default function WigCarousel() {
-  const cards = wigProducts.map((product, index) => (
-    <Card
-      key={product.productId + index}
+// Mobile-Only Grid Card
+const MobileAppCard = ({ product, index }: { product: WigProduct, index: number }) => (
+  <div className="flex flex-col group active:scale-[0.98] transition-transform duration-200">
+    <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border/40">
+      <img 
+        src={wigImages[index % wigImages.length]} 
+        className="w-full h-full object-cover" 
+        alt={product.name} 
+      />
+      <div className="absolute top-2 right-2">
+        <button className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white active:bg-red-500">
+          <IconHeart size={16} />
+        </button>
+      </div>
+      <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] text-white font-bold uppercase tracking-tighter">
+        {product.inches[0]}
+      </div>
+    </div>
+    <div className="mt-2 px-1">
+      <h3 className="text-[13px] font-bold text-foreground line-clamp-1 italic">{product.name}</h3>
+      <p className="text-primary font-black text-sm mt-0.5">R{parseFloat(product.price).toLocaleString()}</p>
+    </div>
+  </div>
+);
+
+const WigsSection = () => {
+  // Prep cards for Desktop Apple Carousel
+  const webCards = wigProducts.map((product, index) => (
+    <Card 
+      key={product.productId} 
       card={{
         src: wigImages[index % wigImages.length],
         title: product.name,
-        category: `R${parseFloat(product.price).toLocaleString()} • ${product.inches[0]}`,
+        category: `R${parseFloat(product.price).toLocaleString()}`,
         content: <ProductContent product={product} />,
-      }}
-      index={index}
+      }} 
+      index={index} 
     />
   ));
 
-  return (
-     <section
-      id="services"
-      className="py-8  md:py-12 lg:py-12 bg-background relative"
-    >
-          {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-radial opacity-20 pointer-events-none" />
-      
-      <div className="container mx-auto px-4 sm:px-6 relative">
-        {/* Header */}
-        <div
-        
-          className="text-center"
-        >
-          <span className="text-primary text-xs uppercase tracking-[0.3em] font-medium block mb-4">
-            Explore
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-             Our Premium<span className="gold-text">Wig Collections</span>
-          </h2>
-          <div className="section-divider mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-             Handpicked luxury wigs for the modern woman
-          </p>
+  if (isMobileApp) {
+    return (
+      <div className="bg-background min-h-screen select-none pb-20">
+        {/* MOBILE APP STICKY HEADER */}
+        <div className="sticky top-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/50 px-5 pt-12 pb-4 flex justify-between items-end">
+          <div>
+            <h1 className="text-2xl font-black font-serif tracking-tight leading-none uppercase">Wig <span className="gold-text">Store</span></h1>
+            <p className="text-[10px] text-muted-foreground font-bold tracking-widest mt-1">TEEPHYNO LUXURY</p>
+          </div>
+          <button className="p-2.5 bg-secondary/30 rounded-2xl active:bg-primary/20">
+            <IconFilter size={20} className="text-primary" />
+          </button>
         </div>
-     </div>
-      
-      <Carousel items={cards} />
-    </section>
+
+        {/* NATIVE PRODUCT GRID (2 COLUMNS) */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-6 p-4">
+          {wigProducts.map((product, index) => (
+            <MobileAppCard key={product.productId} product={product} index={index} />
+          ))}
+        </div>
+
+        {/* MOBILE STICKY FOOTER CTA */}
+        <div className="fixed bottom-6 left-4 right-4 z-50">
+          <button className="w-full bg-primary text-white py-4 rounded-2xl shadow-2xl shadow-primary/40 flex items-center justify-between px-6 active:scale-95 transition-transform">
+            <div className="flex items-center gap-3">
+              <IconShoppingCart size={20} />
+              <span className="font-bold text-sm uppercase tracking-widest">My Bag</span>
+            </div>
+            <div className="flex items-center gap-1 font-black">
+              <span>0 Items</span>
+              <IconChevronRight size={18} />
+            </div>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // DESKTOP VERSION
+  return (
+    <div className="w-full h-full py-20 bg-background overflow-hidden">
+      <div className="container mx-auto px-4 mb-10">
+        <span className="text-primary font-bold text-xs uppercase tracking-[0.4em] mb-3 block">The Collection</span>
+        <h2 className="max-w-7xl mx-auto text-4xl md:text-6xl font-bold text-foreground font-serif">
+          Luxury <span className="gold-text">Wigs</span>
+        </h2>
+      </div>
+      <Carousel items={webCards} />
+    </div>
   );
-}
+};
+
+export default WigsSection;

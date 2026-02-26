@@ -1,32 +1,48 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, ExternalLink, MessageCircle } from 'lucide-react';
 import { SiTiktok } from "react-icons/si";
+
+// 1. Mobile Detection Logic
+const isMobileApp = typeof window !== 'undefined' && navigator.userAgent.includes("TeephynoCutzApp-1.0");
+
 const Contact = () => {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
+
+  // 2. Actionable Links for App Feel
+  const handleCall = (num: string) => window.open(`tel:${num.replace(/\s/g, '')}`, '_system');
+  const handleMap = () => window.open(`https://www.google.com`, '_system');
+  const handleEmail = () => window.open(`mailto:teephynocutz@gmail.com`, '_system');
 
   const contactInfo = [
     {
       icon: MapPin,
       title: 'Location',
-      details: ['105 Long Street', 'Cape Town, 8001', 'South Africa'],
+      details: ['105 Long Street', 'Cape Town, 8001'],
+      action: handleMap,
+      actionLabel: 'Open Maps'
     },
     {
       icon: Phone,
       title: 'Phone',
       details: ['+27 69 849 0110', '+27 75 174 0778'],
+      action: () => handleCall('+27698490110'),
+      actionLabel: 'Call Now'
     },
     {
       icon: Mail,
       title: 'Email',
       details: ['teephynocutz@gmail.com'],
+      action: handleEmail,
+      actionLabel: 'Write Us'
     },
     {
       icon: Clock,
       title: 'Hours',
-      details: ['Mon - Fri: 9:00 AM - 12:00 AM', 'Sat: 9:00 AM - 12:00 AM', 'Sun: 12:00 PM - 12:00 AM'],
+      details: ['Mon-Sat: 9AM - 12AM', 'Sun: 12PM - 12AM'],
+      action: null,
     },
   ];
 
@@ -36,130 +52,101 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background relative">
+    <section id="contact" className={`${isMobileApp ? 'py-10 pb-28' : 'py-16 md:py-32'} bg-background relative`}>
       <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
+          className={`${isMobileApp ? 'text-left' : 'text-center'} mb-10`}
         >
-          <span className="text-primary text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] font-medium mb-3 sm:mb-4 block">
-            Get In Touch
+          <span className="text-primary text-[10px] uppercase tracking-[0.3em] font-bold block mb-2">
+            Connect With Us
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
-            Visit <span className="gold-text">Our Salon</span>
+          <h2 className={`font-serif ${isMobileApp ? 'text-3xl' : 'text-4xl md:text-6xl'} font-bold text-foreground`}>
+            Visit <span className="gold-text">The Salon</span>
           </h2>
-          <div className="section-divider mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Experience luxury grooming at our Cape Town location. Walk-ins welcome, 
-            appointments preferred.
-          </p>
+          {!isMobileApp && <div className="section-divider mx-auto mt-6" />}
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
-          {/* Map */}
+        <div className={`grid ${isMobileApp ? 'grid-cols-1' : 'lg:grid-cols-2'} gap-8`}>
+          
+          {/* CONTACT ACTIONS LIST */}
+          <div className="space-y-4">
+            <div className={`grid ${isMobileApp ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
+              {contactInfo.map((info, index) => (
+                <motion.div
+                  key={info.title}
+                  onClick={info.action || undefined}
+                  className={`glass-card p-5 border border-border/40 ${info.action ? 'active:scale-[0.98] active:bg-secondary/10 transition-all cursor-pointer' : ''}`}
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="p-2 bg-primary/10 rounded-xl">
+                      <info.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    {isMobileApp && info.action && (
+                      <span className="text-[10px] font-bold text-primary flex items-center gap-1 uppercase tracking-tighter">
+                        {info.actionLabel} <ExternalLink size={10} />
+                      </span>
+                    )}
+                  </div>
+                  <h4 className="font-serif text-lg font-bold text-foreground mb-1">{info.title}</h4>
+                  {info.details.map((line, i) => (
+                    <p key={i} className="text-muted-foreground text-xs leading-relaxed">{line}</p>
+                  ))}
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Social & WhatsApp App CTA */}
+            <div className={`flex flex-col gap-4 ${isMobileApp ? 'mt-2' : ''}`}>
+               {isMobileApp && (
+                  <button 
+                    onClick={() => window.open('https://wa.me', '_system')}
+                    className="w-full bg-[#25D366] text-white py-4 rounded-2xl flex items-center justify-center gap-3 font-bold active:scale-95 transition-transform"
+                  >
+                    <MessageCircle size={20} /> Chat on WhatsApp
+                  </button>
+               )}
+               
+               <div className="glass-card p-5 flex items-center justify-between">
+                  <span className="font-serif font-bold italic">Join the community</span>
+                  <div className="flex gap-3">
+                    {socials.map((social) => (
+                      <a key={social.label} href={social.href} className="p-2.5 bg-background border border-border rounded-full text-primary active:scale-90 transition-transform">
+                        <social.icon size={20} />
+                      </a>
+                    ))}
+                  </div>
+               </div>
+            </div>
+          </div>
+
+          {/* MAP BLOCK - Refactored for Mobile */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative rounded-sm overflow-hidden h-[280px] sm:h-[350px] md:h-[400px] lg:h-full lg:min-h-[400px]"
+            className={`relative rounded-3xl overflow-hidden ${isMobileApp ? 'h-[250px] border-2 border-primary/10' : 'h-full min-h-[400px]'}`}
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.8908913454714!2d18.41768031521095!3d-33.92138398063774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc676f1a97f7b7%3A0x8a9c0a9c0a9c0a9c!2sLong%20Street%2C%20Cape%20Town%2C%20South%20Africa!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
               width="100%"
               height="100%"
-              style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(85%)' }}
+              style={{ border: 0, filter: isMobileApp ? 'none' : 'grayscale(100%) invert(92%) contrast(85%)' }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Teephyno Cutz Location"
             />
-            {/* Map Overlay for better readability */}
-            <div className="absolute inset-0 pointer-events-none border border-primary/20 rounded-sm" />
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-4 sm:space-y-6 md:space-y-8"
-          >
-            {/* Info Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={info.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="glass-card p-6"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-primary/20 rounded-full">
-                      <info.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <h4 className="font-serif text-lg font-semibold text-foreground">
-                      {info.title}
-                    </h4>
-                  </div>
-                  <div className="space-y-1">
-                    {info.details.map((detail, i) => (
-                      <p key={i} className="text-muted-foreground text-sm">
-                        {detail}
-                      </p>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="glass-card p-6"
-            >
-              <h4 className="font-serif text-lg font-semibold text-foreground mb-4">
-                Follow Us
-              </h4>
-              <div className="flex gap-4">
-                {socials.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
-                    aria-label={social.label}
-                  >
-                    <social.icon size={20} />
-                  </a>
-                ))}
+            {isMobileApp && (
+              <div 
+                onClick={handleMap}
+                className="absolute inset-0 bg-black/10 flex items-center justify-center cursor-pointer"
+              >
+                <span className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold shadow-xl flex items-center gap-2">
+                  <MapPin size={14} /> Tap to Navigate
+                </span>
               </div>
-            </motion.div>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center lg:text-left"
-            >
-              <a href="/booking" className="btn-gold inline-block">
-                Book Your Visit
-              </a>
-            </motion.div>
+            )}
           </motion.div>
+
         </div>
       </div>
     </section>

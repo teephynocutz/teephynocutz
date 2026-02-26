@@ -1,22 +1,17 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
-  Sparkles,
-  Crown,
   Home,
   ChevronLeft,
   ChevronRight,
+  ArrowRight, // Added for mobile CTA
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
-import { services } from "@/data/services"; 
+import { services } from "@/data/services";
 
-const additionalServices = [
-  { name: "Pedicure", price: "From R220" },
-  { name: "Wig Installation", price: "From R500" },
-  { name: "Hair Coloring", price: "From R400" },
-  { name: "Home Services", price: "Prices Vary", icon: Home },
-];
+// 1. Mobile Detection Utility (Best practice: move to a hook later)
+const isMobileApp = typeof navigator !== 'undefined' && navigator.userAgent.includes("TeephynoCutzApp-1.0");
 
 const ServiceCard = ({
   service,
@@ -26,45 +21,49 @@ const ServiceCard = ({
   index: number;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-   const navigate = useNavigate();
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const navigate = useNavigate();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
       onClick={() => navigate(`/services/${service.slug}`)}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="group glass-card-hover overflow-hidden"
+      initial={isMobileApp ? { opacity: 0, x: 20 } : { opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+      transition={{ duration: 0.4, delay: isMobileApp ? index * 0.05 : index * 0.15 }}
+      // MOBILE: Remove 'glass-card-hover' (no hover on touch), add 'active:scale-98' for haptic feel
+      className={`group overflow-hidden transition-all ${
+        isMobileApp 
+        ? "bg-secondary/10 rounded-2xl mb-4 active:scale-[0.98] active:opacity-90" 
+        : "glass-card-hover"
+      }`}
     >
-      {/* Image */}
-      <div className="relative h-64 overflow-hidden">
+      <div className={`relative ${isMobileApp ? 'h-48' : 'h-64'} overflow-hidden`}>
         <img
           src={service.image}
           alt={service.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className={`w-full h-full object-cover ${!isMobileApp && 'group-hover:scale-110'} transition-transform duration-700`}
         />
-
         <div className="service-overlay absolute inset-0" />
-
-        {/* Price */}
-        <div className="absolute top-4 right-4 bg-primary/90 text-primary-foreground px-3 py-1 rounded-sm text-sm font-semibold">
+        
+        {/* MOBILE: Smaller price tag for screen real estate */}
+        <div className={`absolute top-3 right-3 bg-primary/95 text-primary-foreground font-semibold rounded-full ${isMobileApp ? 'px-3 py-1 text-xs' : 'px-4 py-1.5 text-sm'}`}>
           {service.price}
         </div>
 
-        {/* Icon */}
-        <div className="absolute bottom-4 left-4 p-3 bg-background/80 backdrop-blur-sm rounded-full border border-primary/30">
-          <service.icon className="w-5 h-5 text-primary" />
+        <div className="absolute bottom-3 left-3 p-2.5 bg-background/90 backdrop-blur-md rounded-full border border-primary/20">
+          <service.icon className={`${isMobileApp ? 'w-4 h-4' : 'w-5 h-5'} text-primary`} />
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="font-serif text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-          {service.title}
-        </h3>
-        <p className="text-muted-foreground text-sm leading-relaxed">
+      <div className={`${isMobileApp ? 'p-4' : 'p-6'}`}>
+        <div className="flex justify-between items-center">
+          <h3 className={`font-serif font-semibold text-foreground ${isMobileApp ? 'text-lg' : 'text-xl group-hover:text-primary transition-colors'}`}>
+            {service.title}
+          </h3>
+          {isMobileApp && <ArrowRight className="w-4 h-4 text-primary/50" />}
+        </div>
+        <p className={`text-muted-foreground leading-relaxed mt-1 ${isMobileApp ? 'text-xs line-clamp-2' : 'text-sm'}`}>
           {service.description}
         </p>
       </div>
@@ -75,132 +74,81 @@ const ServiceCard = ({
 const Services = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true });
-
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const scrollLeft = () => {
-    carouselRef.current?.scrollBy({
-      left: -320,
-      behavior: "smooth",
-    });
-  };
-
-  const scrollRight = () => {
-    carouselRef.current?.scrollBy({
-      left: 320,
-      behavior: "smooth",
-    });
-  };
+  // Web-only scroll functions
+  const scrollLeft = () => carouselRef.current?.scrollBy({ left: -320, behavior: "smooth" });
+  const scrollRight = () => carouselRef.current?.scrollBy({ left: 320, behavior: "smooth" });
 
   return (
     <section
       id="services"
-      className="py-8 sm:py-16 md:py-20 lg:py-24 bg-background relative"
+      // MOBILE: Reduce vertical padding to keep content dense
+      className={`${isMobileApp ? 'py-6' : 'py-16 md:py-24'} bg-background relative overflow-hidden`}
     >
-      {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-radial opacity-20 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-radial opacity-10 pointer-events-none" />
 
-      <div className="container mx-auto px-4 sm:px-6 relative">
+      <div className={`${isMobileApp ? 'px-4' : 'container mx-auto px-6'} relative`}>
         {/* Header */}
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className={`${isMobileApp ? 'text-left' : 'text-center'} mb-8`}
         >
-          <span className="text-primary text-xs uppercase tracking-[0.3em] font-medium block mb-4">
-            What We Offer
+          <span className="text-primary text-[10px] uppercase tracking-[0.3em] font-bold block mb-2">
+            Premium Grooming
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Our <span className="gold-text">Services</span>
+          <h2 className={`${isMobileApp ? 'text-3xl' : 'text-4xl md:text-6xl'} font-serif font-bold mb-4`}>
+            {isMobileApp ? "Our " : "Explore Our "}<span className="gold-text">Services</span>
           </h2>
-          <div className="section-divider mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Experience the pinnacle of grooming excellence with our curated
-            selection of premium services.
-          </p>
+          {!isMobileApp && <div className="section-divider mx-auto mb-6" />}
         </motion.div>
 
-        {/* 🔥 SERVICES CAROUSEL */}
-        <div className="relative mb-16">
-          {/* Left Arrow */}
-          <button
-            onClick={scrollLeft}
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur border border-border hover:border-primary transition"
-          >
-            <ChevronLeft className="w-5 h-5 text-primary" />
-          </button>
-
-          {/* Right Arrow */}
-          <button
-            onClick={scrollRight}
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur border border-border hover:border-primary transition"
-          >
-            <ChevronRight className="w-5 h-5 text-primary" />
-          </button>
-
-          {/* Carousel Track */}
-          <div
-            ref={carouselRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth px-1 scrollbar-hide"
-          >
+        {/* 🔥 SERVICES LAYOUT */}
+        {isMobileApp ? (
+          /* MOBILE: Vertical Stack for easier one-handed browsing */
+          <div className="flex flex-col">
             {services.map((service, index) => (
-              <div
-                key={service.title}
-                className="min-w-[280px] sm:min-w-[320px] lg:min-w-[340px]"
-              >
-                <ServiceCard service={service} index={index} />
-              </div>
+              <ServiceCard key={service.title} service={service} index={index} />
             ))}
           </div>
-        </div>
+        ) : (
+          /* WEB: Carousel with Arrows */
+          <div className="relative mb-16">
+            <button onClick={scrollLeft} className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 items-center justify-center rounded-full bg-background/80 backdrop-blur border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-xl">
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button onClick={scrollRight} className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 items-center justify-center rounded-full bg-background/80 backdrop-blur border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-xl">
+              <ChevronRight className="w-6 h-6" />
+            </button>
 
-        {/* Additional Services */}
+            <div ref={carouselRef} className="flex gap-6 overflow-x-auto scroll-smooth px-1 scrollbar-hide">
+              {services.map((service, index) => (
+                <div key={service.title} className="min-w-[320px] lg:min-w-[380px]">
+                  <ServiceCard service={service} index={index} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Additional Services - Refactored as a "Native Card" */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="glass-card p-8"
+          className={`${isMobileApp ? 'mt-6 bg-secondary/5 border-primary/10' : 'glass-card'} p-6 rounded-3xl border`}
         >
-          <div className="flex flex-col sm:flex-row justify-between gap-6 mb-8">
+          <div className={`flex ${isMobileApp ? 'flex-col items-center text-center' : 'justify-between'} gap-4`}>
             <div>
-              <h3 className="font-serif text-2xl font-semibold mb-2">
-                Additional Services
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                Explore more ways we can elevate your look
-              </p>
+              <h3 className="font-serif text-xl font-semibold">Specialty Services</h3>
+              <p className="text-muted-foreground text-xs mt-1">Pedicures, Home Services & Coloring</p>
             </div>
             <a
               href="/services"
-              className="btn-gold text-sm px-6 py-3 text-center"
+              // MOBILE: Full width button for thumbs
+              className={`btn-gold text-sm font-bold tracking-wide transition-transform active:scale-95 ${isMobileApp ? 'w-full py-4 rounded-xl' : 'px-8 py-3'}`}
             >
-              View All Prices
+              FULL PRICE LIST
             </a>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {/* {additionalServices.map((service) => (
-              <div
-                key={service.name}
-                className="p-4 rounded-sm border border-border/50 hover:border-primary/50 bg-background/50 transition-all group cursor-pointer"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  {service.icon && (
-                    <service.icon className="w-4 h-4 text-primary" />
-                  )}
-                  <span className="font-medium group-hover:text-primary transition">
-                    {service.name}
-                  </span>
-                </div>
-                <span className="text-sm text-muted-foreground">
-                  {service.price}
-                </span>
-              </div>
-            ))} */}
-            {/* <h2>Comming Soon</h2> */}
           </div>
         </motion.div>
       </div>

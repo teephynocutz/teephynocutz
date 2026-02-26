@@ -58,7 +58,7 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
         { name: "Free hand", price: 300},
         { name: "Hair/Scalp treatment", price: 500},
         { name: "Closure installation",  price: 500},
-         { name: "Frontal installation", price: 650},
+        { name: "Frontal installation", price: 650},
         { name: "Frontal ponytail", price: 800},
         { name: "360 installation", price: 1200},
         { name: "2 frontal Installation", price: 1300},
@@ -69,8 +69,6 @@ const PRICING: Record<BookingType, ServiceCategory[]> = {
         { name: "Wigging", price: 700},
         { name: "Lace wash", price: 100},
         { name: "Lace ventilation-upward", price: 300},
-        
-
       ],
     },
     {
