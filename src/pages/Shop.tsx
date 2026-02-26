@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ShoppingBag, Sparkles, Home, Palette, Star } from 'lucide-react';
+import { ShoppingBag, Sparkles, Home, Palette, Star, Search, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -68,6 +68,9 @@ const shopCategories = [
   },
 ];
 
+// 1. Mobile Detection Logic
+const isMobileApp = typeof window !== 'undefined' && navigator.userAgent.includes("TeephynoCutzApp-1.0");
+
 const Shop = () => {
   const [activeCategory, setActiveCategory] = useState('wigs');
   const headerRef = useRef(null);
@@ -76,142 +79,138 @@ const Shop = () => {
   const currentCategory = shopCategories.find((cat) => cat.id === activeCategory);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-background select-none">
+      {/* 2. NAVIGATION: Hide web navbar in app */}
+      {!isMobileApp && <Navbar />}
 
-      {/* Hero Section */}
-      <section className="pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-10 sm:pb-12 md:pb-16 lg:pb-24 relative">
-        <div className="absolute inset-0 bg-gold-radial opacity-20" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      {/* Hero Section: Drastically reduced for App version */}
+      <section className={`${isMobileApp ? 'pt-14 pb-4 px-4 bg-background' : 'pt-24 pb-10 bg-gold-radial opacity-20'} relative overflow-hidden`}>
+        <div className={`${isMobileApp ? 'w-full' : 'container mx-auto px-4'} relative z-10`}>
           <motion.div
             ref={headerRef}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: isMobileApp ? 10 : 30 }}
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center"
+            className={isMobileApp ? "text-left" : "text-center"}
           >
-            <span className="text-primary text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] font-medium mb-3 sm:mb-4 block">
-              Premium Products & Services
-            </span>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 sm:mb-6">
-              Our <span className="gold-text-shimmer">Shop</span>
-            </h1>
-            <div className="section-divider mb-6" />
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Discover premium wigs, professional hair coloring, luxurious nail services, 
-              and convenient home services tailored for you.
-            </p>
+            {isMobileApp ? (
+              <div className="flex justify-between items-end">
+                <div>
+                  <h1 className="font-serif text-3xl font-bold tracking-tight">Luxury <span className="gold-text">Store</span></h1>
+                  <p className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.3em] mt-1">Premium Collection</p>
+                </div>
+                <div className="p-2 bg-secondary/20 rounded-full active:bg-primary/20 transition-colors">
+                  <Search size={20} className="text-primary" />
+                </div>
+              </div>
+            ) : (
+              <>
+                <span className="text-primary text-xs uppercase tracking-[0.3em] font-medium mb-4 block">Premium Products & Services</span>
+                <h1 className="font-serif text-7xl font-bold text-foreground mb-6">Our <span className="gold-text-shimmer">Shop</span></h1>
+                <div className="section-divider mx-auto mb-6" />
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Discover professional hair services and products tailored for you.</p>
+              </>
+            )}
           </motion.div>
         </div>
       </section>
 
-      {/* Category Tabs */}
-      <section className="py-4 sm:py-6 md:py-8 border-y border-border/30 sticky top-16 sm:top-20 bg-background/95 backdrop-blur-lg z-30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6">
-            {shopCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-3 md:px-6 rounded-full transition-all duration-300 text-xs sm:text-sm md:text-base ${
-                  activeCategory === category.id
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-background-secondary text-muted-foreground hover:text-foreground border border-border/50 hover:border-primary/50'
-                }`}
-              >
-                <category.icon size={16} className="sm:w-[18px] sm:h-[18px]" />
-                <span className="font-medium">{category.name}</span>
-              </button>
-            ))}
-          </div>
+      {/* 3. CATEGORY CHIPS: Sticky Horizontal Scroll for Mobile */}
+      <section className={`sticky ${isMobileApp ? 'top-0 pt-4' : 'top-16 py-6 border-y'} z-40 bg-background/95 backdrop-blur-xl border-border/30`}>
+        <div className={`${isMobileApp ? 'px-4 pb-4' : 'container mx-auto px-4'} flex overflow-x-auto gap-2 scrollbar-hide`}>
+          {shopCategories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full transition-all whitespace-nowrap text-xs font-bold uppercase tracking-widest ${
+                activeCategory === category.id
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-secondary/10 text-muted-foreground border border-transparent active:scale-95'
+              }`}
+            >
+              <category.icon size={14} />
+              {category.name}
+            </button>
+          ))}
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="py-10 sm:py-12 md:py-16 lg:py-24 bg-background-secondary">
-        <div className="container mx-auto px-4 sm:px-6">
-          {/* {currentCategory && (
+      {/* 4. PRODUCTS GRID: 2-Column Adaptive for Mobile */}
+      <section className={`${isMobileApp ? 'py-4 px-4 pb-32' : 'py-16 bg-background-secondary'}`}>
+        <div className={isMobileApp ? "w-full" : "container mx-auto"}>
+          {currentCategory && (
             <>
-              <motion.div
-                key={currentCategory.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-center mb-8 sm:mb-10 md:mb-12"
-              >
-                <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
-                  {currentCategory.name}
-                </h2>
-                <p className="text-muted-foreground text-sm sm:text-base">{currentCategory.description}</p>
-              </motion.div>
+              {/* Category Subheader (App Style) */}
+              {isMobileApp && (
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-lg font-serif font-black italic">{currentCategory.name}</h2>
+                  <span className="text-[10px] font-bold text-muted-foreground uppercase">{currentCategory.items.length} Items</span>
+                </div>
+              )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+              <div className={`grid ${isMobileApp ? 'grid-cols-2 gap-3' : 'grid-cols-3 gap-8'}`}>
                 {currentCategory.items.map((item, index) => (
                   <motion.div
                     key={item.name}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="glass-card group overflow-hidden"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: isMobileApp ? (index % 4) * 0.05 : index * 0.1 }}
+                    className={`relative flex flex-col active:scale-[0.98] transition-transform ${isMobileApp ? '' : 'glass-card group overflow-hidden'}`}
                   >
-                    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                    {/* Image Container */}
+                    <div className={`relative overflow-hidden ${isMobileApp ? 'aspect-[4/5] rounded-3xl' : 'h-64'}`}>
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className={`w-full h-full object-cover ${!isMobileApp && 'group-hover:scale-110 transition-transform duration-500'}`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                        <span className="inline-block px-2 sm:px-3 py-1 bg-primary text-primary-foreground text-xs sm:text-sm font-semibold rounded-full">
+                      <div className="absolute bottom-2 left-2">
+                        <span className="bg-black/60 backdrop-blur-md text-white px-2 py-1 rounded-lg text-[10px] font-black tracking-tight">
                           {item.price}
                         </span>
                       </div>
+                      {isMobileApp && (
+                         <button className="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-md rounded-full text-white">
+                           <ShoppingBag size={14} />
+                         </button>
+                      )}
                     </div>
-                    <div className="p-4 sm:p-5 md:p-6">
-                      <h3 className="font-serif text-base sm:text-lg md:text-xl font-semibold text-foreground mb-2 sm:mb-3">
+
+                    {/* Content Section */}
+                    <div className={isMobileApp ? 'mt-2 px-1' : 'p-6'}>
+                      <h3 className={`font-serif font-bold text-foreground leading-tight ${isMobileApp ? 'text-xs line-clamp-1 italic' : 'text-xl mb-3'}`}>
                         {item.name}
                       </h3>
-                      <button className="w-full btn-gold text-xs sm:text-sm py-2 sm:py-3 flex items-center justify-center gap-2">
-                        <ShoppingBag size={16} />
-                        Add to Cart
-                      </button>
+                      {!isMobileApp && (
+                        <button className="w-full btn-gold py-3 flex items-center justify-center gap-2">
+                          <ShoppingBag size={16} /> Add to Cart
+                        </button>
+                      )}
                     </div>
                   </motion.div>
                 ))}
               </div>
             </>
-          )} */}
-          <div><h1 className='text-center'>Coming Soon</h1></div>
+          )}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-gold-radial opacity-10" />
-        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
-              Need Something <span className="gold-text">Custom?</span>
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base px-4">
-              Contact us for custom wig orders, special packages, or personalized services 
-              tailored to your unique needs.
-            </p>
-            <a href="/contact" className="btn-gold inline-block">
-              Get in Touch
-            </a>
-          </motion.div>
-        </div>
+      {/* 5. CTA Section: Persistent Footer on Mobile */}
+      <section className={`${isMobileApp ? 'fixed bottom-6 left-4 right-4 z-50' : 'py-20 bg-background'}`}>
+        {isMobileApp ? (
+          <a href="/contact" className="w-full bg-primary text-white py-4 rounded-2xl flex items-center justify-center gap-3 font-bold shadow-2xl active:scale-95 transition-transform uppercase tracking-widest text-xs">
+             Get Custom Quote <ChevronRight size={16} />
+          </a>
+        ) : (
+          <div className="container mx-auto text-center">
+            <h2 className="font-serif text-4xl font-bold mb-6">Need Something <span className="gold-text">Custom?</span></h2>
+            <p className="text-muted-foreground max-w-xl mx-auto mb-8 text-base">Contact us for personalized services tailored to your unique needs.</p>
+            <a href="/contact" className="btn-gold inline-block">Get in Touch</a>
+          </div>
+        )}
       </section>
 
-      <Footer />
+      {!isMobileApp && <Footer />}
     </div>
   );
 };
-
 export default Shop;
