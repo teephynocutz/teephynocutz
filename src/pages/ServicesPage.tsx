@@ -11,6 +11,11 @@ import serviceManicure from '@/assets/service-manicure.jpg';
 import Braids from '@/assets/services/braids.jpeg';
 import serviceShaving from '@/assets/service-shaving.jpg';
 
+// 1. Mobile App Detection
+const isMobileApp = typeof window !== 'undefined' && navigator.userAgent.includes("TeephynoCutzApp-1.0");
+
+
+
 const mainServices = [
   {
     title: 'Precision Haircuts',
@@ -324,194 +329,233 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
-      {/* Hero Section */}
-      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 md:pt-28 md:pb-12 lg:pt-36 lg:pb-16 relative">
-        <div className="absolute inset-0 bg-gold-radial opacity-20" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            ref={headerRef}
-            initial={{ opacity: 0, y: 30 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <span className="text-primary text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] font-medium mb-2 sm:mb-4 block">
-              What We Offer
-            </span>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-3 sm:mb-6">
-              Our <span className="gold-text-shimmer">Services</span>
-            </h1>
-            <div className="section-divider mb-4 sm:mb-6" />
-            <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-2">
-              Experience the pinnacle of grooming excellence with our curated selection 
-              of premium services designed for the modern individual.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Main Services Grid */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-background-secondary relative">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-6 sm:mb-8 md:mb-12"
-          >
-            <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4">
-              Signature <span className="gold-text">Treatments</span>
-            </h2>
-            <p className="text-muted-foreground text-xs sm:text-sm md:text-base max-w-xl mx-auto">
-              Our most popular services, delivered with precision and care
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-            {mainServices.map((service, index) => (
-              <ServiceCard key={service.title} service={service} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Services */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-background relative">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-6 sm:mb-8 md:mb-12"
-          >
-            <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4">
-              Additional <span className="gold-text">Services</span>
-            </h2>
-            <p className="text-muted-foreground text-xs sm:text-sm md:text-base max-w-xl mx-auto">
-              Complete your look with our range of supplementary treatments
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-            {/* {additionalServices.map((service, index) => (
-              <motion.div
-                key={service.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="glass-card p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4"
-              >
-                <div className="flex-1">
-                  <h3 className="font-semibold text-foreground text-sm sm:text-base mb-1">
-                    {service.name}
-                  </h3>
-                  <p className="text-muted-foreground text-xs">
-                    {service.description}
-                  </p>
-                </div>
-                <span className="text-primary font-semibold text-sm sm:text-base whitespace-nowrap">
-                  {service.price}
-                </span>
-              </motion.div>
-            ))} */}
-            <h2>Coming Soon</h2>
-          </div>
-        </div>
-      </section>
-
-      {/* Home Services Section */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-background-secondary relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <div className="absolute inset-0 bg-gold-radial opacity-10" />
-        
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-6 sm:mb-8 md:mb-12"
-          >
-            <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
-              <Home className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-              <span className="text-primary text-[10px] sm:text-xs uppercase tracking-[0.2em] font-medium">
-                Convenience at Your Doorstep
-              </span>
-            </div>
-            <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4">
-              Home <span className="gold-text">Services</span>
-            </h2>
-            <p className="text-muted-foreground text-xs sm:text-sm md:text-base max-w-xl mx-auto">
-              Experience our luxury salon services in the comfort of your own home
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto">
-            {/* {homeServices.map((service, index) => (
-              <motion.div
-                key={service.name}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="glass-card-hover p-4 sm:p-5 md:p-6"
-              >
-                <div className="flex items-start justify-between gap-3 mb-2 sm:mb-3">
-                  <h3 className="font-serif text-base sm:text-lg font-semibold text-foreground">
-                    {service.name}
-                  </h3>
-                  <span className="text-primary font-bold text-sm sm:text-base whitespace-nowrap">
-                    {service.price}
+      <main className={`${isMobileApp ? 'pt-12 pb-24' : 'pt-24 pb-32'}`}>
+        {/* Hero Section */}
+        <section className={`${isMobileApp ? 'pt-14 pb-6 px-4' : 'pt-20 pb-8 sm:pt-24 sm:pb-10 md:pt-28 md:pb-12 lg:pt-36 lg:pb-16'} relative overflow-hidden`}>
+          {/* App-Specific Glow (Smaller for less visual noise on mobile screens) */}
+          <div className={`absolute inset-0 bg-gold-radial ${isMobileApp ? 'opacity-10 scale-150' : 'opacity-20'}`} />
+          
+          <div className={`${isMobileApp ? 'w-full' : 'container mx-auto px-4 sm:px-6'} relative z-10`}>
+            <motion.div
+              ref={headerRef}
+              initial={{ opacity: 0, y: isMobileApp ? 10 : 30 }}
+              animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+              className={isMobileApp ? "text-left" : "text-center"}
+            >
+              {/* Mobile Badge instead of plain text span */}
+              {isMobileApp ? (
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="text-primary text-[10px] uppercase tracking-widest font-bold">
+                    Premium Menu
                   </span>
                 </div>
-                <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">
-                  {service.description}
-                </p>
-                <Link to="/contact" className="text-primary text-xs sm:text-sm font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
-                  Book Home Visit
-                  <ArrowRight size={12} />
-                </Link>
-              </motion.div>
-            ))} */}
-            <h2>Comming Soon</h2>
+              ) : (
+                <span className="text-primary text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] font-medium mb-2 sm:mb-4 block">
+                  What We Offer
+                </span>
+              )}
+
+              <h1 className={`font-serif font-bold text-foreground mb-3 sm:mb-6 ${isMobileApp ? 'text-4xl leading-tight' : 'text-3xl sm:text-4xl md:text-5xl lg:text-7xl'}`}>
+                Our <span className={isMobileApp ? "gold-text" : "gold-text-shimmer"}>Services</span>
+              </h1>
+
+              {/* Hide divider on App to save vertical space; use left-border for text instead */}
+              {!isMobileApp ? (
+                <div className="section-divider mb-4 sm:mb-6" />
+              ) : (
+                <div className="h-0.5 w-12 bg-primary/40 rounded-full mb-4" />
+              )}
+
+              <p className={`text-muted-foreground leading-relaxed ${isMobileApp ? 'text-sm max-w-[90%] border-l-2 border-primary/10 pl-4 italic' : 'text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2'}`}>
+                Experience the pinnacle of grooming excellence with our curated selection 
+                of premium services.
+              </p>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+        {/* Main Services Grid */}
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-background-secondary relative">
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          
+          <div className="container mx-auto px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-6 sm:mb-8 md:mb-12"
+            >
+              <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4">
+                Signature <span className="gold-text">Treatments</span>
+              </h2>
+              <p className="text-muted-foreground text-xs sm:text-sm md:text-base max-w-xl mx-auto">
+                Our most popular services, delivered with precision and care
+              </p>
+            </motion.div>
 
-      {/* CTA Section */}
-      <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-gold-radial opacity-10" />
-        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">
-              Ready to <span className="gold-text">Transform</span> Your Look?
-            </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto mb-5 sm:mb-6 md:mb-8 text-xs sm:text-sm md:text-base px-4">
-              Book your appointment today and experience the Teephyno Cutz difference
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <a href="/#booking" className="btn-gold w-full sm:w-auto">
-                Book Appointment
-              </a>
-              <Link to="/contact" className="btn-ghost w-full sm:w-auto">
-                Contact Us
-              </Link>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+              {mainServices.map((service, index) => (
+                <ServiceCard key={service.title} service={service} index={index} />
+              ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
 
+        {/* Additional Services */}
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-background relative">
+          <div className="container mx-auto px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-6 sm:mb-8 md:mb-12"
+            >
+              <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4">
+                Additional <span className="gold-text">Services</span>
+              </h2>
+              <p className="text-muted-foreground text-xs sm:text-sm md:text-base max-w-xl mx-auto">
+                Complete your look with our range of supplementary treatments
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+            
+              <h2>Coming Soon</h2>
+            </div>
+          </div>
+        </section>
+
+        {/* Home Services Section */}
+        <section className={`${isMobileApp ? 'py-10 pb-20' : 'py-8 sm:py-20'} bg-background-secondary relative overflow-hidden`}>
+          {/* App-Style Top Border for Section Separation */}
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+          <div className={`absolute inset-0 bg-gold-radial ${isMobileApp ? 'opacity-5' : 'opacity-10'}`} />
+          
+          <div className={`${isMobileApp ? 'px-4' : 'container mx-auto px-6'} relative z-10`}>
+            {/* Header Refactor: App-style Left Alignment */}
+            <motion.div
+              initial={{ opacity: 0, x: isMobileApp ? -20 : 0, y: isMobileApp ? 0 : 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className={`${isMobileApp ? 'mb-8' : 'text-center mb-12'}`}
+            >
+              <div className={`inline-flex items-center gap-2 mb-3 ${isMobileApp ? 'bg-primary/10 px-3 py-1 rounded-full' : ''}`}>
+                <Home className={`${isMobileApp ? 'w-4 h-4' : 'w-6 h-6'} text-primary`} />
+                <span className="text-primary text-[9px] sm:text-xs uppercase tracking-[0.2em] font-black">
+                  On-Demand Luxury
+                </span>
+              </div>
+              
+              <h2 className={`font-serif font-bold text-foreground mb-2 ${isMobileApp ? 'text-3xl italic' : 'text-xl sm:text-4xl'}`}>
+                Home <span className="gold-text">Services</span>
+              </h2>
+              
+              <p className={`text-muted-foreground ${isMobileApp ? 'text-xs max-w-[80%] leading-relaxed' : 'text-xs sm:text-base max-w-xl mx-auto'}`}>
+                Experience our luxury salon services in the comfort of your own space. 
+                {isMobileApp && <span className="block mt-1 text-primary/80 font-bold uppercase tracking-tighter">Available across Cape Town</span>}
+              </p>
+            </motion.div>
+
+            {/* List Refactor: Single Column for App Browsing */}
+            <div className={`grid ${isMobileApp ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto'}`}>
+              {homeServices.length > 0 ? (
+                homeServices.map((service, index) => (
+                  <motion.div
+                    key={service.name}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className={`${
+                      isMobileApp 
+                      ? 'bg-background p-5 rounded-3xl border-l-4 border-l-primary shadow-sm active:scale-[0.98]' 
+                      : 'glass-card-hover p-6 border border-border/50'
+                    } transition-all relative overflow-hidden`}
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className={`font-serif font-bold text-foreground ${isMobileApp ? 'text-lg' : 'text-base sm:text-lg'}`}>
+                        {service.name}
+                      </h3>
+                      <span className="text-primary font-black text-sm sm:text-base whitespace-nowrap bg-primary/5 px-2 py-1 rounded-lg">
+                        {service.price}
+                      </span>
+                    </div>
+                    
+                    <p className="text-muted-foreground text-[11px] sm:text-sm mb-4 leading-snug">
+                      {service.description}
+                    </p>
+                    
+                    <Link 
+                      to="/contact" 
+                      className={`inline-flex items-center gap-2 font-bold tracking-widest uppercase transition-all ${
+                        isMobileApp ? 'text-[10px] text-primary' : 'text-primary text-xs sm:text-sm'
+                      }`}
+                    >
+                      Request Home Visit
+                      <ArrowRight size={14} className={isMobileApp ? 'text-primary' : ''} />
+                    </Link>
+                  </motion.div>
+                ))
+              ) : (
+                /* The "Coming Soon" Refactor */
+                <div className={`flex flex-col items-center justify-center p-12 text-center rounded-3xl border-2 border-dashed border-border/40 ${isMobileApp ? 'bg-secondary/5' : ''}`}>
+                  <Clock className="w-8 h-8 text-primary/40 mb-3 animate-pulse" />
+                  <h3 className="font-serif text-lg font-bold text-muted-foreground/60 italic">Launching Soon</h3>
+                  <p className="text-[10px] text-muted-foreground/40 uppercase tracking-widest mt-1">Mobile Grooming Experience</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className={`${isMobileApp ? 'py-12 pb-32 bg-secondary/5' : 'py-10 sm:py-20 bg-background'} relative overflow-hidden`}>
+          {/* App-Specific Glow (More subtle to keep text sharp) */}
+          <div className={`absolute inset-0 bg-gold-radial ${isMobileApp ? 'opacity-5 scale-125' : 'opacity-10'}`} />
+          
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, scale: isMobileApp ? 0.95 : 1, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className={`font-serif font-bold text-foreground mb-3 ${isMobileApp ? 'text-2xl leading-tight italic' : 'text-xl sm:text-4xl'}`}>
+                Ready to <span className="gold-text">Transform</span> Your Look?
+              </h2>
+              
+              <p className={`text-muted-foreground mx-auto mb-8 px-4 ${isMobileApp ? 'text-[13px] leading-relaxed max-w-xs border-l-2 border-primary/20 italic' : 'max-w-lg text-xs sm:text-base'}`}>
+                Book your appointment today and experience the <span className="text-foreground font-bold">Teephyno Cutz</span> difference.
+              </p>
+
+              {/* BUTTON REFACTOR: Native App Vertical Stack vs Web Horizontal */}
+              <div className={`flex flex-col items-center justify-center gap-4 ${isMobileApp ? 'w-full max-w-sm mx-auto' : 'sm:flex-row'}`}>
+                <a 
+                  href="/#booking" 
+                  className={`btn-gold flex items-center justify-center gap-2 shadow-xl shadow-primary/20 transition-transform active:scale-[0.96] ${isMobileApp ? 'w-full py-4 rounded-2xl text-sm font-black tracking-widest' : 'w-full sm:w-auto px-8'}`}
+                >
+                  {isMobileApp && <Star size={16} fill="white" />}
+                  SECURE BOOKING
+                </a>
+                
+                <Link 
+                  to="/contact" 
+                  className={`flex items-center justify-center transition-all active:opacity-60 ${isMobileApp ? 'text-primary text-xs font-bold uppercase tracking-widest py-2' : 'btn-ghost w-full sm:w-auto px-8'}`}
+                >
+                  {isMobileApp ? 'Need Help? Contact Support' : 'Contact Us'}
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* App-Only Bottom Safe Area Spacer */}
+          {isMobileApp && <div className="h-10" />}
+        </section>
+      </main>
       <Footer />
     </div>
   );
