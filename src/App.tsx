@@ -14,6 +14,7 @@ import BookingPage from "./pages/BookingPage";
 import BookingSuccessPage from "./pages/BookingSuccessful";
 import ServiceDetail from "./pages/ServiceDetail";
 import WhatsappFloat from "./components/WhatsAppFloat";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const queryClient = new QueryClient();
 
@@ -32,8 +33,8 @@ const App = function () {
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/booking" element={<BookingPage />} />
-          <Route path="/booking-success" element={<BookingSuccessPage />} />
-          
+          <Route path="/booking-success" element={<PrivacyPolicy />} />
+          <Route path="/policy" element={<BookingSuccessPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
