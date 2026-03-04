@@ -11,7 +11,7 @@ const PrivacyPolicy: React.FC = () => {
     padding: '40px 20px',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     lineHeight: '1.6',
-    color: '#1a1a1a',
+    color: '#f4ebeb',
   };
 
   const sectionStyle: React.CSSProperties = { marginBottom: '32px' };
