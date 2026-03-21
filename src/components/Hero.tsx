@@ -79,7 +79,7 @@ const Hero = () => {
         </motion.h1>
 
         {/* Mobile Action Buttons - Thumb Optimized */}
-        <motion.div
+        {!isMobileApp && <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -93,7 +93,7 @@ const Hero = () => {
           <Link to="/services" className={`font-bold uppercase tracking-widest active:opacity-60 transition-opacity ${isMobileApp ? 'text-white/70 text-xs py-2' : 'btn-ghost'}`}>
             Explore Services
           </Link>
-        </motion.div>
+        </motion.div>}
 
         {/* Stats Refactor - High Density for Mobile */}
         <motion.div
