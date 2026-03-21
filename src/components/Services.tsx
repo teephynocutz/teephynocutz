@@ -134,7 +134,7 @@ const Services = () => {
         )}
 
         {/* Additional Services - Refactored as a "Native Card" */}
-        <motion.div
+        {!isMobileApp && <motion.div
           className={`${isMobileApp ? 'mt-6 bg-secondary/5 border-primary/10' : 'glass-card'} p-6 rounded-3xl border`}
         >
           <div className={`flex ${isMobileApp ? 'flex-col items-center text-center' : 'justify-between'} gap-4`}>
@@ -150,7 +150,7 @@ const Services = () => {
               FULL PRICE LIST
             </a>
           </div>
-        </motion.div>
+        </motion.div>}
       </div>
     </section>
   );
