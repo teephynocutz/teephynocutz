@@ -7,8 +7,7 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WigCarousel from '@/components/WigCarousel';
-import { Link } from 'react-router-dom';
-import logo from '@/assets/logo-banner.png';
+
 
 const Index = () => {
   

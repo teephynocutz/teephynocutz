@@ -6,18 +6,18 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 import hairstyling0ne from '@/assets/Hairstyles/hairStyling-1.jpg';
-import hairstylingTwo from '@/assets/Hairstyles/haiStyling-2.jpg';
+import hairstylingTwo from '@/assets/Hairstyles/hairStyling-2.jpg';
 import hairstylingThree from '@/assets/Hairstyles/hairStyling-3.jpg';
 import hairstylingFour from '@/assets/Hairstyles/hairStyling-4.jpg';
 import banners from '@/assets/banners.jpeg';
 import serviceBraids from '@/assets/service-braids.jpg';
 import serviceManicure from '@/assets/service-manicure.jpg';
-import haircutZero from '@/assets/men/haircut-0.jpeg';
-import haircutOne from '@/assets/men/haircut-1.jpeg';
-import haircutTwo from '@/assets/men/haircut-2.jpeg';
-import haircutThree from '@/assets/men/haircut-3.jpg';
-import haircutFour from '@/assets/men/haircut-4.jpg';
-import haircutFive from '@/assets/men/haircut-5.jpg';
+import haircutZero from '@/assets/Haircuts/haircut-0.jpeg';
+import haircutOne from '@/assets/Haircuts/haircut-1.jpeg';
+import haircutTwo from '@/assets/Haircuts/haircut-2.jpeg';
+import haircutThree from '@/assets/Haircuts/haircut-3.jpg';
+import haircutFour from '@/assets/Haircuts/haircut-4.jpg';
+import haircutFive from '@/assets/Haircuts/haircut-5.jpg';
 import serviceShaving from "@/assets/services/shaving.jpg"
 
 const galleryImages = [

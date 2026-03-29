@@ -4,8 +4,69 @@ import { useRef, useState } from 'react';
 import { ShoppingBag, Sparkles, Home, Palette, Star, Search, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
+
+const hairstyleImages = [
+  new URL('@/assets/Hairstyles/hairStyling-1.jpg', import.meta.url).href,
+  new URL('@/assets/Hairstyles/hairStyling-2.jpg', import.meta.url).href,
+  new URL('@/assets/Hairstyles/hairStyling-3.jpg', import.meta.url).href,
+  new URL('@/assets/Hairstyles/hairStyling-4.jpg', import.meta.url).href,
+];
+
+const haircutImages = [
+  new URL('@/assets/Haircuts/haircut-0.jpeg', import.meta.url).href,
+  new URL('@/assets/Haircuts/haircut-1.jpeg', import.meta.url).href,
+  new URL('@/assets/Haircuts/haircut-2.jpeg', import.meta.url).href,
+  new URL('@/assets/Haircuts/haircut-3.jpg', import.meta.url).href,
+  new URL('@/assets/Haircuts/haircut-4.jpg', import.meta.url).href,
+  new URL('@/assets/Haircuts/haircut-5.jpg', import.meta.url).href,
+];
+
+const braidImages = [
+  new URL("@/assets/Braids/braids-1.jpeg", import.meta.url).href,
+  new URL("@/assets/Braids/braids-2.jpeg", import.meta.url).href,
+  new URL("@/assets/Braids/braids-3.jpeg", import.meta.url).href,
+];
 
 const shopCategories = [
+  {
+    id: 'hair-cuts',
+    name: 'Haircuts',
+    icon: Palette,
+    description: 'Professional haircuts services and products',
+    items: [
+      { name: 'Cut 1', price: 'R850', image: haircutImages[0] },
+      { name: 'Cut 2', price: 'R1,200', image: haircutImages[1] },
+      { name: 'Cut 3', price: 'R1,500', image: haircutImages[2] },
+      { name: 'Cut 4', price: 'R1,300', image: haircutImages[3] },
+      { name: 'Cut 5', price: 'R1,800', image: haircutImages[4] },
+      { name: 'Cut 6', price: 'R2,000', image: haircutImages[5] },
+    ],
+    },
+  {
+    id: 'hair-style',
+    name: 'Hairstyle',
+    icon: Palette,
+    description: 'Professional hairstyles services and products',
+      items: [
+    { name: 'Style 1', price: 'R850', image: hairstyleImages[0] },
+    { name: 'Style 2', price: 'R1,200', image: hairstyleImages[1] },
+    { name: 'Style 3', price: 'R1,500', image: hairstyleImages[2] },
+    { name: 'Style 4', price: 'R1,300', image: hairstyleImages[3] },
+   
+  ],
+  },
+  {
+  id: 'braids',
+    name: 'Braids',
+    icon: Palette,
+    description: 'Professional braiding services and styles',
+    items: [
+      { name: 'Braids 1', price: 'R850', image: braidImages[0] },
+      { name: 'Braids 2', price: 'R1,200', image: braidImages[1] },
+      { name: 'Braids 3', price: 'R1,500', image: braidImages[2] },
+    ],
+  },
   {
     id: 'wigs',
     name: 'Wigs',
@@ -15,9 +76,9 @@ const shopCategories = [
       { 
         name: 'Bone Straight 5 by 5 wig', 
         price: 'R5,000', 
-        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400' 
+        image: 'assets/wigs/5by5-inches-grey-5000.jpeg' 
       },
-      { name: 'Lace Front Straight Wig', price: 'R3,200', image: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=400' },
+      { name: 'Bone Straight by 5 by 5  wig', price: 'R3,200', image: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=400' },
       { name: 'Curly Bob Wig', price: 'R1,800', image: 'https://images.unsplash.com/photo-1605980625600-88d6a5894a49?w=400' },
       { name: 'Deep Wave HD Lace Wig', price: 'R4,500', image: 'https://images.unsplash.com/photo-1560869713-bf6f1ce88db3?w=400' },
       { name: 'Pixie Cut Wig', price: 'R1,500', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400' },
@@ -25,22 +86,8 @@ const shopCategories = [
     ],
   },
   {
-    id: 'hair-coloring',
-    name: 'Hair Coloring',
-    icon: Palette,
-    description: 'Professional hair coloring services and products',
-    items: [
-      { name: 'Full Color Treatment', price: 'R850', image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400' },
-      { name: 'Highlights & Lowlights', price: 'R1,200', image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=400' },
-      { name: 'Balayage Treatment', price: 'R1,500', image: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=400' },
-      { name: 'Ombre Coloring', price: 'R1,300', image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400' },
-      { name: 'Vivid Fashion Colors', price: 'R1,800', image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400' },
-      { name: 'Color Correction', price: 'R2,000', image: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=400' },
-    ],
-  },
-  {
-    id: 'home-services',
-    name: 'Home Services',
+    id: 'dreadlocks',
+    name: 'Dreadlocks',
     icon: Home,
     description: 'Luxury salon experience at your doorstep',
     items: [
@@ -53,8 +100,8 @@ const shopCategories = [
     ],
   },
   {
-    id: 'polish-nails',
-    name: 'Polish & Nails',
+    id: 'nailss',
+    name: 'Nails',
     icon: Star,
     description: 'Stunning nail art and polish services',
     items: [
@@ -66,6 +113,19 @@ const shopCategories = [
       { name: 'Chrome & Ombre Nails', price: 'R480', image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400' },
     ],
   },
+   
+  {
+    id: 'manicure&pedicure',
+    name: 'Manicure & Pedicure',
+    icon: Sparkles,
+    description: 'Premium quality wigs for every style and occasion',
+    items: [
+      { 
+        name: 'Bone Straight 5 by 5 wig', 
+        price: 'R5,000', 
+        image: 'assets/wigs/5by5-inches-grey-5000.jpeg' 
+        },]
+  }
 ];
 
 // 1. Mobile Detection Logic
@@ -163,11 +223,7 @@ const Shop = () => {
                         alt={item.name}
                         className={`w-full h-full object-cover ${!isMobileApp && 'group-hover:scale-110 transition-transform duration-500'}`}
                       />
-                      <div className="absolute bottom-2 left-2">
-                        <span className="bg-black/60 backdrop-blur-md text-white px-2 py-1 rounded-lg text-[10px] font-black tracking-tight">
-                          {item.price}
-                        </span>
-                      </div>
+                      
                       {isMobileApp && (
                          <button className="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-md rounded-full text-white">
                            <ShoppingBag size={14} />
@@ -181,9 +237,11 @@ const Shop = () => {
                         {item.name}
                       </h3>
                       {!isMobileApp && (
-                        <button className="w-full btn-gold py-3 flex items-center justify-center gap-2">
-                          <ShoppingBag size={16} /> Add to Cart
-                        </button>
+                        <Link to="/booking"
+                            className="w-full btn-gold py-3 flex items-center justify-center gap-2"
+                          >
+                            <ShoppingBag size={16} /> Book Now
+                        </Link>
                       )}
                     </div>
                   </motion.div>
